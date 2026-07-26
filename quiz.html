@@ -59,35 +59,44 @@ const questions = [
 
 let currentQ = 0;
 let userAnswers = ["", "", ""];
+let timeLeftArray = [30, 30, 30]; // Question tinah 30s save na
 let timerInterval;
-let timeLeft = 30; // Second 30
+let questionVisited = [false, false, false]; // Vawikhat chiah timer tan nan
 
 function startTimer() {
-  timeLeft = 30;
-  document.getElementById("nextBtn").disabled = true; // Hmasak ah disable
-  updateTimerDisplay();
+  // Vawikhat chiah tan
+  if(questionVisited[currentQ]) return;
+  questionVisited[currentQ] = true;
 
-  clearInterval(timerInterval); // Timer hlui off
+  updateTimerDisplay();
+  document.getElementById("nextBtn").disabled = true;
+
+  clearInterval(timerInterval);
   timerInterval = setInterval(() => {
-    timeLeft--;
+    timeLeftArray[currentQ]--;
     updateTimerDisplay();
-    if(timeLeft <= 0) {
+    if(timeLeftArray[currentQ] <= 0) {
       clearInterval(timerInterval);
-      document.getElementById("nextBtn").disabled = false; // 30s ah enable
+      document.getElementById("nextBtn").disabled = false;
     }
   }, 1000);
 }
 
 function updateTimerDisplay() {
-  document.getElementById("timer").innerText = `Time: ${timeLeft}s`;
-  if(timeLeft <= 10) {
-    document.getElementById("timer").style.color = "#d9534f"; // 10s hnuhnung a sen
+  document.getElementById("timer").innerText = `Time: ${timeLeftArray[currentQ]}s`;
+  if(timeLeftArray[currentQ] <= 10) {
+    document.getElementById("timer").style.color = "#d9534f";
   } else {
     document.getElementById("timer").style.color = "#0056b3";
+  }
+  // 0 a thlen chuan enable
+  if(timeLeftArray[currentQ] <= 0) {
+    document.getElementById("nextBtn").disabled = false;
   }
 }
 
 function loadQuestion() {
+  clearInterval(timerInterval); // Timer hlui stop
   document.getElementById("qCounter").innerText = `Question ${currentQ + 1} of ${questions.length}`;
   document.getElementById("questionText").innerText = questions[currentQ].q;
 
@@ -103,12 +112,17 @@ function loadQuestion() {
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
 
-  startTimer(); // Question thar tinah timer tan thar
+  updateTimerDisplay(); // Timer hlui tarlan
+  if(timeLeftArray[currentQ] > 0 &&!questionVisited[currentQ]) {
+    startTimer(); // Vawikhat nan chiah tan
+  } else if(timeLeftArray[currentQ] <= 0) {
+    document.getElementById("nextBtn").disabled = false; // A lo zo tawh
+  }
 }
 
 function saveAnswer(val) {
   userAnswers[currentQ] = val;
-  loadQuestion(); // selected color update nan
+  loadQuestion(); // Timer tan lo, chhiar chhunzawm
 }
 
 function nextQuestion() {
@@ -116,7 +130,7 @@ function nextQuestion() {
     alert("Chhanna thlang hmasa rawh");
     return;
   }
-  clearInterval(timerInterval); // Timer off
+  clearInterval(timerInterval);
   if(currentQ < questions.length - 1) {
     currentQ++;
     loadQuestion();
@@ -129,7 +143,7 @@ function prevQuestion() {
   clearInterval(timerInterval);
   if(currentQ > 0) {
     currentQ--;
-    loadQuestion();
+    loadQuestion(); // Timer reset lo, a tawpna tang chhunzawm
   }
 }
 
@@ -138,6 +152,7 @@ function checkAnswers() {
   for(let i=0; i<questions.length; i++) {
     if(userAnswers[i] === questions[i].ans) score++;
   }
+  clearInterval(timerInterval);
   document.getElementById("quizBox").style.display = "none";
   document.querySelector(".btn-group").style.display = "none";
   document.getElementById("timer").style.display = "none";
