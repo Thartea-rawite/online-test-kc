@@ -1,69 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CCC Exam - Quiz</title>
-<style>
-  body {font-family: 'Segoe UI', Roboto, Arial, sans-serif; background:#f0f4f8; padding:20px; font-size:17px;}
-.container {background:white; max-width:800px; margin:auto; padding:35px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
-.header-quiz {display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:2px solid #0056b3; padding-bottom:10px;}
-.header-quiz h2 {color:#0056b3; font-size:22px; margin:0;}
- #timer {font-size:18px; font-weight:700; color:#d9534f; background:#fdecea; padding:8px 15px; border-radius:8px;}
- #studentInfo {font-size:16px; color:#555;}
- #qCounter {font-size:16px; color:#0056b3; font-weight:700;}
-.question {margin:25px 0; font-size:20px; font-weight:600;}
-.options label {display:block; margin:12px 0; padding:14px; border:2px solid #ddd; border-radius:8px; cursor:pointer; font-size:17px; transition:0.2s;}
-.options input {margin-right:10px; transform:scale(1.2);}
-.options label:hover {background:#e7f1ff; border-color:#0056b3;}
-.options label.selected {background:#d4e8ff; border-color:#0056b3;}
-.btn-group {display:flex; justify-content:space-between; margin-top:30px;}
-.btn {padding:14px 30px; background:#0056b3; color:white; border:none; border-radius:8px; font-size:18px; font-weight:700; cursor:pointer;}
-.btn:hover {background:#003d82;}
-.btn:disabled {background:#ccc; cursor:not-allowed;}
- #result {margin-top:25px; font-size:22px; font-weight:700; color:#0056b3; text-align:center;}
-</style>
-</head>
-<body>
-<div class="container">
-  <div class="header-quiz">
-    <h2>CCC Exam</h2>
-    <div id="timer">Time: 30s</div>
-  </div>
-  <div style="display:flex; justify-content:space-between;">
-    <div id="studentInfo"></div>
-    <div id="qCounter">Question 1 of 3</div>
-  </div>
-
-  <div id="quizBox">
-    <div class="question" id="questionText"></div>
-    <div class="options" id="optionsBox"></div>
-  </div>
-
-  <div class="btn-group">
-    <button class="btn" id="prevBtn" onclick="prevQuestion()" disabled>Prev</button>
-    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
-  </div>
-  <div id="result"></div>
-</div>
-
 <script>
 const studentName = localStorage.getItem("studentName");
+const studentRoll = localStorage.getItem("studentRoll"); // Unique ID atan
 document.getElementById("studentInfo").innerHTML = "<b>Student:</b> " + studentName;
 
-const questions = [
+const allQuestions = [
   { q: "Q1: Kawnpui College hi khawi vengah nge a awm?", options: ["A. Chhimveng", "B. Mualvum", "C. Dinthar", "D. Venglai"], ans: "D" },
   { q: "Q2: Undo na", options: ["A. Ctrl + C", "B. Ctrl + Z", "C. Ctrl + S", "D. Ctrl + B"], ans: "B" },
   { q: "Q3: PC Fullform is", options: ["A. Parent Control", "B. Pacific Committee", "C. Personal Computer", "D. Pure Comit"], ans: "C" }
 ];
 
-let currentQ = 0;
-let userAnswers = ["", "", ""];
-let timeLeftArray = [30, 30, 30]; // Q tinah 30s
+function shuffleArray(array) {
+  let arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// 1. KEY unique siam - RollNo hmang
+const STORAGE_KEY = "exam_" + studentRoll;
+
+// 2. Data awm sa check
+let savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+let questions, currentQ, userAnswers, timeLeftArray;
+
+if(savedData) {
+  // Data awm sa - Refresh a ni tihna
+  questions = savedData.questions;
+  currentQ = savedData.currentQ;
+  userAnswers = savedData.userAnswers;
+  timeLeftArray = savedData.timeLeftArray;
+} else {
+  // Vawi 1 na - Thar in tan
+  questions = shuffleArray(allQuestions);
+  currentQ = 0;
+  userAnswers = new Array(questions.length).fill("");
+  timeLeftArray = new Array(questions.length).fill(30);
+}
+
 let timerInterval = null;
 
+// 3. Data save zel na function
+function saveProgress() {
+  let data = { questions, currentQ, userAnswers, timeLeftArray };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
 function runTimer() {
-  clearInterval(timerInterval); // Timer hlui off
+  clearInterval(timerInterval);
   updateTimerDisplay();
 
   if(timeLeftArray[currentQ] <= 0) {
@@ -75,9 +61,11 @@ function runTimer() {
   timerInterval = setInterval(() => {
     timeLeftArray[currentQ]--;
     updateTimerDisplay();
+    saveProgress(); // second tin in save
     if(timeLeftArray[currentQ] <= 0) {
       clearInterval(timerInterval);
       document.getElementById("nextBtn").disabled = false;
+      saveProgress();
     }
   }, 1000);
 }
@@ -106,12 +94,13 @@ function loadQuestion() {
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
 
-  runTimer(); // Question tinah timer run
+  runTimer();
 }
 
 function saveAnswer(val) {
   userAnswers[currentQ] = val;
-  renderOptions(); // Timer affect lo
+  saveProgress(); // chhang apiangin save
+  renderOptions();
 }
 
 function nextQuestion() {
@@ -121,7 +110,8 @@ function nextQuestion() {
   }
   if(currentQ < questions.length - 1) {
     currentQ++;
-    loadQuestion(); // Timer chhunzawm
+    saveProgress();
+    loadQuestion();
   } else {
     checkAnswers();
   }
@@ -130,12 +120,14 @@ function nextQuestion() {
 function prevQuestion() {
   if(currentQ > 0) {
     currentQ--;
-    loadQuestion(); // Timer chhunzawm
+    saveProgress();
+    loadQuestion();
   }
 }
 
 function checkAnswers() {
   clearInterval(timerInterval);
+  localStorage.removeItem(STORAGE_KEY); // Exam zo = delete
   let score = 0;
   for(let i=0; i<questions.length; i++) {
     if(userAnswers[i] === questions[i].ans) score++;
@@ -146,7 +138,8 @@ function checkAnswers() {
   document.getElementById("result").innerHTML = `${studentName}, I Mark: ${score} / ${questions.length}`;
 }
 
-loadQuestion(); // a hmasaber
+loadQuestion();
+
+// 4. Tab khar/Refresh hma in save
+window.addEventListener("beforeunload", saveProgress);
 </script>
-</body>
-</html>
