@@ -59,12 +59,11 @@ const questions = [
 
 let currentQ = 0;
 let userAnswers = ["", "", ""];
-let timeLeftArray = [30, 30, 30]; // Question tinah 30s save na
+let timeLeftArray = [30, 30, 30];
 let timerInterval;
-let questionVisited = [false, false, false]; // Vawikhat chiah timer tan nan
+let questionVisited = [false, false, false];
 
 function startTimer() {
-  // Vawikhat chiah tan
   if(questionVisited[currentQ]) return;
   questionVisited[currentQ] = true;
 
@@ -84,22 +83,13 @@ function startTimer() {
 
 function updateTimerDisplay() {
   document.getElementById("timer").innerText = `Time: ${timeLeftArray[currentQ]}s`;
-  if(timeLeftArray[currentQ] <= 10) {
-    document.getElementById("timer").style.color = "#d9534f";
-  } else {
-    document.getElementById("timer").style.color = "#0056b3";
-  }
-  // 0 a thlen chuan enable
+  document.getElementById("timer").style.color = timeLeftArray[currentQ] <= 10? "#d9534f" : "#0056b3";
   if(timeLeftArray[currentQ] <= 0) {
     document.getElementById("nextBtn").disabled = false;
   }
 }
 
-function loadQuestion() {
-  clearInterval(timerInterval); // Timer hlui stop
-  document.getElementById("qCounter").innerText = `Question ${currentQ + 1} of ${questions.length}`;
-  document.getElementById("questionText").innerText = questions[currentQ].q;
-
+function renderOptions() { // Timer affect lo tur, hemi chiah hi update
   let optionsHTML = "";
   questions[currentQ].options.forEach((opt, i) => {
     let val = ["A","B","C","D"][i];
@@ -108,21 +98,29 @@ function loadQuestion() {
     optionsHTML += `<label class="${selectedClass}"><input type="radio" name="option" value="${val}" ${checked} onclick="saveAnswer('${val}')"> ${opt}</label>`;
   });
   document.getElementById("optionsBox").innerHTML = optionsHTML;
+}
+
+function loadQuestion() {
+  clearInterval(timerInterval);
+  document.getElementById("qCounter").innerText = `Question ${currentQ + 1} of ${questions.length}`;
+  document.getElementById("questionText").innerText = questions[currentQ].q;
+
+  renderOptions(); // Options chiah update
 
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
 
-  updateTimerDisplay(); // Timer hlui tarlan
+  updateTimerDisplay();
   if(timeLeftArray[currentQ] > 0 &&!questionVisited[currentQ]) {
-    startTimer(); // Vawikhat nan chiah tan
+    startTimer(); // Vawikhat nan chiah
   } else if(timeLeftArray[currentQ] <= 0) {
-    document.getElementById("nextBtn").disabled = false; // A lo zo tawh
+    document.getElementById("nextBtn").disabled = false;
   }
 }
 
 function saveAnswer(val) {
   userAnswers[currentQ] = val;
-  loadQuestion(); // Timer tan lo, chhiar chhunzawm
+  renderOptions(); // Timer stop lo, option color chiah update
 }
 
 function nextQuestion() {
@@ -143,7 +141,7 @@ function prevQuestion() {
   clearInterval(timerInterval);
   if(currentQ > 0) {
     currentQ--;
-    loadQuestion(); // Timer reset lo, a tawpna tang chhunzawm
+    loadQuestion(); // Timer chhunzawm
   }
 }
 
@@ -159,7 +157,7 @@ function checkAnswers() {
   document.getElementById("result").innerHTML = `${studentName}, I Mark: ${score} / ${questions.length}`;
 }
 
-loadQuestion(); // a hmasaber load
+loadQuestion();
 </script>
 </body>
 </html>
