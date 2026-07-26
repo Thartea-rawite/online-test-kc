@@ -59,24 +59,24 @@ const questions = [
 
 let currentQ = 0;
 let userAnswers = ["", "", ""];
-let timeLeftArray = [30, 30, 30];
+let timeLeftArray = [30, 30, 30]; // Q tinah 30s
 let timerInterval = null;
-let questionVisited = [false, false, false];
 
-function startTimer() {
-  if(timerInterval) return; // Timer pakhat chiah kal tur
-  if(questionVisited[currentQ]) return;
-  questionVisited[currentQ] = true;
-
+function runTimer() {
+  clearInterval(timerInterval); // Timer hlui off
   updateTimerDisplay();
-  document.getElementById("nextBtn").disabled = true;
 
+  if(timeLeftArray[currentQ] <= 0) {
+    document.getElementById("nextBtn").disabled = false;
+    return;
+  }
+
+  document.getElementById("nextBtn").disabled = true;
   timerInterval = setInterval(() => {
     timeLeftArray[currentQ]--;
     updateTimerDisplay();
     if(timeLeftArray[currentQ] <= 0) {
       clearInterval(timerInterval);
-      timerInterval = null;
       document.getElementById("nextBtn").disabled = false;
     }
   }, 1000);
@@ -85,9 +85,6 @@ function startTimer() {
 function updateTimerDisplay() {
   document.getElementById("timer").innerText = `Time: ${timeLeftArray[currentQ]}s`;
   document.getElementById("timer").style.color = timeLeftArray[currentQ] <= 10? "#d9534f" : "#0056b3";
-  if(timeLeftArray[currentQ] <= 0) {
-    document.getElementById("nextBtn").disabled = false;
-  }
 }
 
 function renderOptions() {
@@ -109,13 +106,7 @@ function loadQuestion() {
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
 
-  updateTimerDisplay();
-  // Time a la awm chuan timer chhunzawm, a zo tawh chuan button open
-  if(timeLeftArray[currentQ] > 0 &&!questionVisited[currentQ]) {
-    startTimer();
-  } else if(timeLeftArray[currentQ] <= 0) {
-    document.getElementById("nextBtn").disabled = false;
-  }
+  runTimer(); // Question tinah timer run
 }
 
 function saveAnswer(val) {
@@ -130,7 +121,7 @@ function nextQuestion() {
   }
   if(currentQ < questions.length - 1) {
     currentQ++;
-    loadQuestion(); // clearInterval kan delete tawh
+    loadQuestion(); // Timer chhunzawm
   } else {
     checkAnswers();
   }
@@ -139,7 +130,7 @@ function nextQuestion() {
 function prevQuestion() {
   if(currentQ > 0) {
     currentQ--;
-    loadQuestion(); // clearInterval kan delete tawh
+    loadQuestion(); // Timer chhunzawm
   }
 }
 
@@ -155,9 +146,7 @@ function checkAnswers() {
   document.getElementById("result").innerHTML = `${studentName}, I Mark: ${score} / ${questions.length}`;
 }
 
-// Exam tan tirh ah timer tan
-loadQuestion();
-startTimer();
+loadQuestion(); // a hmasaber
 </script>
 </body>
 </html>
