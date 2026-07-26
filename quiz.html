@@ -60,22 +60,23 @@ const questions = [
 let currentQ = 0;
 let userAnswers = ["", "", ""];
 let timeLeftArray = [30, 30, 30];
-let timerInterval;
+let timerInterval = null;
 let questionVisited = [false, false, false];
 
 function startTimer() {
+  if(timerInterval) return; // Timer pakhat chiah kal tur
   if(questionVisited[currentQ]) return;
   questionVisited[currentQ] = true;
 
   updateTimerDisplay();
   document.getElementById("nextBtn").disabled = true;
 
-  clearInterval(timerInterval);
   timerInterval = setInterval(() => {
     timeLeftArray[currentQ]--;
     updateTimerDisplay();
     if(timeLeftArray[currentQ] <= 0) {
       clearInterval(timerInterval);
+      timerInterval = null;
       document.getElementById("nextBtn").disabled = false;
     }
   }, 1000);
@@ -89,7 +90,7 @@ function updateTimerDisplay() {
   }
 }
 
-function renderOptions() { // Timer affect lo tur, hemi chiah hi update
+function renderOptions() {
   let optionsHTML = "";
   questions[currentQ].options.forEach((opt, i) => {
     let val = ["A","B","C","D"][i];
@@ -101,18 +102,17 @@ function renderOptions() { // Timer affect lo tur, hemi chiah hi update
 }
 
 function loadQuestion() {
-  clearInterval(timerInterval);
   document.getElementById("qCounter").innerText = `Question ${currentQ + 1} of ${questions.length}`;
   document.getElementById("questionText").innerText = questions[currentQ].q;
-
-  renderOptions(); // Options chiah update
+  renderOptions();
 
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
 
   updateTimerDisplay();
+  // Time a la awm chuan timer chhunzawm, a zo tawh chuan button open
   if(timeLeftArray[currentQ] > 0 &&!questionVisited[currentQ]) {
-    startTimer(); // Vawikhat nan chiah
+    startTimer();
   } else if(timeLeftArray[currentQ] <= 0) {
     document.getElementById("nextBtn").disabled = false;
   }
@@ -120,7 +120,7 @@ function loadQuestion() {
 
 function saveAnswer(val) {
   userAnswers[currentQ] = val;
-  renderOptions(); // Timer stop lo, option color chiah update
+  renderOptions(); // Timer affect lo
 }
 
 function nextQuestion() {
@@ -128,36 +128,36 @@ function nextQuestion() {
     alert("Chhanna thlang hmasa rawh");
     return;
   }
-  clearInterval(timerInterval);
   if(currentQ < questions.length - 1) {
     currentQ++;
-    loadQuestion();
+    loadQuestion(); // clearInterval kan delete tawh
   } else {
     checkAnswers();
   }
 }
 
 function prevQuestion() {
-  clearInterval(timerInterval);
   if(currentQ > 0) {
     currentQ--;
-    loadQuestion(); // Timer chhunzawm
+    loadQuestion(); // clearInterval kan delete tawh
   }
 }
 
 function checkAnswers() {
+  clearInterval(timerInterval);
   let score = 0;
   for(let i=0; i<questions.length; i++) {
     if(userAnswers[i] === questions[i].ans) score++;
   }
-  clearInterval(timerInterval);
   document.getElementById("quizBox").style.display = "none";
   document.querySelector(".btn-group").style.display = "none";
   document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = `${studentName}, I Mark: ${score} / ${questions.length}`;
 }
 
+// Exam tan tirh ah timer tan
 loadQuestion();
+startTimer();
 </script>
 </body>
 </html>
