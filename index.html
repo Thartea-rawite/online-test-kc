@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CCC Exam - Kawnpui College</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial;
+      background: #f0f4f8;
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; margin: 0; padding: 20px;
+    }
+  .container {
+      background: white; max-width: 700px; width: 100%;
+      padding: 40px; border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-top: 5px solid #0056b3;
+    }
+   .header {text-align: center; margin-bottom: 30px;}
+   .header img {width: 130px; margin-bottom: 15px;}
+   .header h1 {color: #0056b3; margin: 5px 0; font-size: 22px;}
+   .header p {color: #555; margin: 0; font-size: 14px;}
+   .input-group {margin: 25px 0;}
+   .input-group label {font-weight: bold; color: #333; font-size: 16px;}
+   .input-group input {
+      width: 100%; padding: 12px; margin-top: 8px;
+      border: 1px solid #ccc; border-radius: 6px; font-size: 16px;
+      box-sizing: border-box;
+    }
+  .instructions {
+      background: #e7f1ff; padding: 20px; border-radius: 8px;
+      border-left: 4px solid #0056b3; margin: 25px 0;
+    }
+  .instructions h3 {margin-top: 0; color: #0056b3;}
+  .instructions ul {margin: 10px 0; padding-left: 20px;}
+  .instructions li {margin: 10px 0; color: #333; font-size: 15px;}
+   .btn {
+      width: 100%; padding: 14px; background: #0056b3; color: white;
+      border: none; border-radius: 6px; font-size: 18px; font-weight: bold;
+      cursor: pointer;
+    }
+   .btn:hover {background: #003d82;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- PAGE HMASA BER -->
+    <div class="header">
+      <!-- STEP 1: logo.png hi Github ah upload rawh -->
+      <img src="Logo.png" alt="NIELIT Logo" width="180">
+      
+      <h1>Course on Computer Concepts (CCC) Exam</h1>
+      <p>Demo exam panel for student practice</p>
+    </div>
+
+    <div class="input-group">
+      <label>👤 Enter Student Name</label>
+      <input type="text" id="studentName" placeholder="I hming ziak rawh">
+    </div>
+
+    <div class="instructions">
+      <h3>Instructions</h3>
+      <ul>
+        <li><b>Total Questions:</b> 100</li>
+        <li><b>Total Marks:</b> 100</li>
+        <li><b>Duration:</b> 90 minutes</li>
+        <li><b>No Negative Marking</b></li>
+      </ul>
+    </div>
+
+    <button class="btn" onclick="alert('Hming ziak la Start rawh')">Start Exam</button>
+  </div>
+</body>
+</html>
