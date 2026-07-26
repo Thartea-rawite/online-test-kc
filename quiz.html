@@ -9,6 +9,7 @@
 .container {background:white; max-width:800px; margin:auto; padding:35px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);}
 .header-quiz {display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:2px solid #0056b3; padding-bottom:10px;}
 .header-quiz h2 {color:#0056b3; font-size:22px; margin:0;}
+ #timer {font-size:18px; font-weight:700; color:#d9534f; background:#fdecea; padding:8px 15px; border-radius:8px;}
  #studentInfo {font-size:16px; color:#555;}
  #qCounter {font-size:16px; color:#0056b3; font-weight:700;}
 .question {margin:25px 0; font-size:20px; font-weight:600;}
@@ -27,9 +28,12 @@
 <div class="container">
   <div class="header-quiz">
     <h2>CCC Exam</h2>
+    <div id="timer">Time: 30s</div>
+  </div>
+  <div style="display:flex; justify-content:space-between;">
+    <div id="studentInfo"></div>
     <div id="qCounter">Question 1 of 3</div>
   </div>
-  <div id="studentInfo"></div>
 
   <div id="quizBox">
     <div class="question" id="questionText"></div>
@@ -38,7 +42,7 @@
 
   <div class="btn-group">
     <button class="btn" id="prevBtn" onclick="prevQuestion()" disabled>Prev</button>
-    <button class="btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
   </div>
   <div id="result"></div>
 </div>
@@ -48,25 +52,40 @@ const studentName = localStorage.getItem("studentName");
 document.getElementById("studentInfo").innerHTML = "<b>Student:</b> " + studentName;
 
 const questions = [
-  {
-    q: "Q1: Kawnpui College hi khawi vengah nge a awm?",
-    options: ["A. Chhimveng", "B. Mualvum", "C. Dinthar", "D. Venglai"],
-    ans: "D"
-  },
-  {
-    q: "Q2: Undo na",
-    options: ["A. Ctrl + C", "B. Ctrl + Z", "C. Ctrl + S", "D. Ctrl + B"],
-    ans: "B"
-  },
-  {
-    q: "Q3: PC Fullform is",
-    options: ["A. Parent Control", "B. Pacific Committee", "C. Personal Computer", "D. Pure Comit"],
-    ans: "C"
-  }
+  { q: "Q1: Kawnpui College hi khawi vengah nge a awm?", options: ["A. Chhimveng", "B. Mualvum", "C. Dinthar", "D. Venglai"], ans: "D" },
+  { q: "Q2: Undo na", options: ["A. Ctrl + C", "B. Ctrl + Z", "C. Ctrl + S", "D. Ctrl + B"], ans: "B" },
+  { q: "Q3: PC Fullform is", options: ["A. Parent Control", "B. Pacific Committee", "C. Personal Computer", "D. Pure Comit"], ans: "C" }
 ];
 
 let currentQ = 0;
-let userAnswers = ["", "", ""]; // Answer save na
+let userAnswers = ["", "", ""];
+let timerInterval;
+let timeLeft = 30; // Second 30
+
+function startTimer() {
+  timeLeft = 30;
+  document.getElementById("nextBtn").disabled = true; // Hmasak ah disable
+  updateTimerDisplay();
+
+  clearInterval(timerInterval); // Timer hlui off
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft <= 0) {
+      clearInterval(timerInterval);
+      document.getElementById("nextBtn").disabled = false; // 30s ah enable
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  document.getElementById("timer").innerText = `Time: ${timeLeft}s`;
+  if(timeLeft <= 10) {
+    document.getElementById("timer").style.color = "#d9534f"; // 10s hnuhnung a sen
+  } else {
+    document.getElementById("timer").style.color = "#0056b3";
+  }
+}
 
 function loadQuestion() {
   document.getElementById("qCounter").innerText = `Question ${currentQ + 1} of ${questions.length}`;
@@ -83,6 +102,8 @@ function loadQuestion() {
 
   document.getElementById("prevBtn").disabled = currentQ === 0;
   document.getElementById("nextBtn").innerText = currentQ === questions.length - 1? "Submit" : "Next";
+
+  startTimer(); // Question thar tinah timer tan thar
 }
 
 function saveAnswer(val) {
@@ -95,6 +116,7 @@ function nextQuestion() {
     alert("Chhanna thlang hmasa rawh");
     return;
   }
+  clearInterval(timerInterval); // Timer off
   if(currentQ < questions.length - 1) {
     currentQ++;
     loadQuestion();
@@ -104,6 +126,7 @@ function nextQuestion() {
 }
 
 function prevQuestion() {
+  clearInterval(timerInterval);
   if(currentQ > 0) {
     currentQ--;
     loadQuestion();
@@ -117,6 +140,7 @@ function checkAnswers() {
   }
   document.getElementById("quizBox").style.display = "none";
   document.querySelector(".btn-group").style.display = "none";
+  document.getElementById("timer").style.display = "none";
   document.getElementById("result").innerHTML = `${studentName}, I Mark: ${score} / ${questions.length}`;
 }
 
