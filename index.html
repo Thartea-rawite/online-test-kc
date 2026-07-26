@@ -1,91 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>CCC Exam - Kawnpui College</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCC Exam - Login</title>
+<style>
   body {
-    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* A fiah zawk */
-    background: #f0f4f8;
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; margin: 0; padding: 20px;
-    font-size: 17px; /* Base font a lian */
-    -webkit-font-smoothing: antialiased; /* Blur a ti reh */
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: #f0f4f8; display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; margin: 0; padding: 20px; font-size: 17px;
+    -webkit-font-smoothing: antialiased;
   }
-  .container {
+ .container {
     background: white; max-width: 750px; width: 100%;
     padding: 40px; border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-top: 5px solid #0056b3;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #0056b3;
   }
-  .header {text-align: center; margin-bottom: 30px;}
-  .header img {width: 140px; margin-bottom: 15px;}
-  .header h1 {
-    color: #0056b3; margin: 5px 0; 
-    font-size: 26px; /* Title a lian */
-    font-weight: 700;
-  }
-  .input-group {margin: 25px 0;}
-  .input-group label {
-    font-weight: 600; color: #222; 
-    font-size: 18px; /* Label a lian */
-  }
-  .input-group input {
+ .header {text-align: center; margin-bottom: 30px;}
+ .header img {width: 140px; margin-bottom: 15px;}
+ .header h1 {color: #0056b3; margin: 5px 0; font-size: 26px; font-weight: 700;}
+ .input-group {margin: 25px 0;}
+ .input-group label {font-weight: 600; color: #222; font-size: 18px;}
+ .input-group input {
     width: 100%; padding: 14px; margin-top: 10px;
-    border: 2px solid #ccc; border-radius: 8px; 
-    font-size: 18px; /* Input a lian */
-    box-sizing: border-box;
-    font-family: inherit;
+    border: 2px solid #ccc; border-radius: 8px; font-size: 18px;
+    box-sizing: border-box; font-family: inherit;
   }
-  .instructions {
+ .instructions {
     background: #e7f1ff; padding: 25px; border-radius: 10px;
     border-left: 5px solid #0056b3; margin: 25px 0;
   }
-  .instructions h3 {
-    margin-top: 0; color: #0056b3; 
-    font-size: 20px; /* Instructions title */
-  }
-  .instructions ul {margin: 12px 0; padding-left: 22px;}
-  .instructions li {
-    margin: 12px 0; color: #333; 
-    font-size: 17px; /* List a lian */
-    line-height: 1.6;
-  }
-  .btn {
+ .instructions h3 {margin-top: 0; color: #0056b3; font-size: 20px;}
+ .instructions ul {margin: 12px 0; padding-left: 22px;}
+ .instructions li {margin: 12px 0; color: #333; font-size: 17px; line-height: 1.6;}
+ .btn {
     width: 100%; padding: 16px; background: #0056b3; color: white;
-    border: none; border-radius: 8px; 
-    font-size: 19px; font-weight: 700; /* Button a lian & bold */
+    border: none; border-radius: 8px; font-size: 19px; font-weight: 700;
     cursor: pointer; letter-spacing: 0.5px;
   }
-  .btn:hover {background: #003d82;}
+ .btn:hover {background: #003d82;}
 </style>
 </head>
 <body>
-  <div class="container">
-    <!-- PAGE HMASA BER -->
-    <div class="header">
-      <!-- STEP 1: logo.png hi Github ah upload rawh -->
-      <img src="Logo.png" alt="NIELIT Logo" width="180">
-      
-      <h1>Course on Computer Concepts (CCC) Exam</h1>
-    </div>
-
-    <div class="input-group">
-      <label>👤 Enter Student Name</label>
-      <input type="text" id="studentName" placeholder="Write your name">
-    </div>
-
-    <div class="instructions">
-      <h3>Instructions</h3>
-      <ul>
-        <li><b>Total Questions:</b> 100</li>
-        <li><b>Total Marks:</b> 100</li>
-        <li><b>Duration:</b> 90 minutes</li>
-        <li><b>No Negative Marking</b></li>
-      </ul>
-    </div>
-
-    <button class="btn" onclick="alert('Hming ziak la Start rawh')">Start Exam</button>
+<div class="container">
+  <div class="header">
+    <img src="Web Logo.png" alt="NIELIT Logo">
+    <h1>Course on Computer Concepts (CCC) Exam</h1>
   </div>
+
+  <div class="input-group">
+    <label>👤 Enter Student Name</label>
+    <input type="text" id="studentName" placeholder="">
+  </div>
+
+  <div class="instructions">
+    <h3>Instructions</h3>
+    <ul>
+      <li><b>Total Questions:</b> 3</li>
+      <li><b>Total Marks:</b> 3</li>
+      <li><b>Duration:</b> 90 minutes</li>
+      <li><b>No Negative Marking</b></li>
+    </ul>
+  </div>
+
+  <button class="btn" onclick="startExam()">Start Exam</button>
+</div>
+
+<script>
+function startExam() {
+  const name = document.getElementById("studentName").value.trim();
+  if(name === "") {
+    alert("Hming ziak la Start rawh");
+    return;
+  }
+  localStorage.setItem("studentName", name);
+  window.location.href = "quiz.html";
+}
+</script>
 </body>
 </html>
