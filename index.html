@@ -68,6 +68,8 @@ body{background:#fff}
 .exam-meta{display:flex;border-left:2px solid #333;border-right:2px solid #333;border-bottom:2px solid #333}
 .exam-meta>div{padding:8px 12px;font-size:14px;font-weight:bold;border-right:1px solid #999}
 .exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}.exam-meta .remain{flex:2;text-align:center}
+/* 30 SECONDS - CHUNG LAMAH A SEN IN */
+.q-time-top{color:#e60000;font-size:16px;font-weight:900}
 .exam-body{display:flex;min-height:calc(100vh - 140px)}
 .exam-left{flex:1;padding:18px 22px;font-size:15px;line-height:1.7;overflow-y:auto}
 .exam-left p{margin-bottom:12px;text-align:justify}
@@ -94,9 +96,7 @@ body{background:#fff}
 .footer-btns{display:flex;gap:12px;align-items:center}
 .pill-btn{border:2px solid #333;background:#fff;padding:8px 16px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;box-shadow:0 2px 5px rgba(0,0,0,.2)}
 .pill-btn.submit{color:#2e7d32}.pill-btn.reset{color:#e60000}
-/* SUBMIT LOCK - 30 SECONDS */
 .pill-btn.submit:disabled{background:#ddd;color:#999;border-color:#aaa;cursor:not-allowed;box-shadow:none}
-.q-timer{font-size:13px;font-weight:bold;color:#e60000;text-align:center;margin-top:8px}
 .font-btn{border:1px solid #999;background:#fff;padding:4px 8px;font-weight:bold;cursor:pointer}
 #result{display:none;text-align:center;padding:30px}
 @media(max-width:800px){.exam-right{width:160px}.exam-info>div{min-width:110px}.qgrid{grid-template-columns:repeat(5,1fr)}.exam-footer .opts{gap:30px;padding-left:10px}}
@@ -184,6 +184,7 @@ body{background:#fff}
     <div>Total Marks: 100</div>
     <div>Total Time: 60 minutes</div>
     <div class="remain">Remaining Time: <span id="remainTime">0 : 59 : 49</span></div>
+    <div>Wait: <span class="q-time-top" id="qTimerTop">30s</span></div>
     <div class="mark">Mark: <span id="markVal">1</span></div>
   </div>
   <div class="exam-body">
@@ -207,7 +208,6 @@ body{background:#fff}
       <button class="pill-btn reset" onclick="resetAnswer()">Reset Answer</button>
     </div>
   </div>
-  <div style="text-align:center;padding-bottom:8px"><span class="q-timer" id="qTimer"></span></div>
   <div id="result" style="display:none;text-align:center;padding:30px">
     <h2 id="scoreText"></h2><p id="passText"></p><p id="detailText"></p><br>
     <button class="blue-btn" onclick="location.reload()">TRY AGAIN</button>
@@ -278,30 +278,23 @@ let questions=[
 for(let i=16;i<=50;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
 let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
 let timeLeft=60*60-11, timerStarted=false;
-
-// 30 SECONDS LOCK - QUESTION TINAH
 let lockTimer=null, lockLeft=30;
 function startQuestionLock(){
   clearInterval(lockTimer);
   let btn=document.getElementById('submitBtn');
-  let timerEl=document.getElementById('qTimer');
-  // A submit tawh question ah chuan lock ngai lo
-  if(submitted[current]){
-    btn.disabled=false; btn.innerText="Submit Answer"; timerEl.innerText=""; return;
-  }
+  let topEl=document.getElementById('qTimerTop');
+  if(submitted[current]){ btn.disabled=false; btn.innerText="Submit Answer"; topEl.innerText="0s"; topEl.style.color="#2e7d32"; return; }
   lockLeft=30;
-  btn.disabled=true; btn.innerText="Wait 30s...";
-  timerEl.innerText="Please wait 30 seconds before submitting...";
+  btn.disabled=true; btn.innerText="Submit Answer";
+  topEl.innerText="30s"; topEl.style.color="#e60000";
   lockTimer=setInterval(()=>{
     lockLeft--;
     if(lockLeft<=0){
       clearInterval(lockTimer);
-      btn.disabled=false; btn.innerText="Submit Answer";
-      timerEl.innerText="You can now submit!";
-      setTimeout(()=>{ if(document.getElementById('qTimer')) document.getElementById('qTimer').innerText=""; },2000);
+      btn.disabled=false;
+      topEl.innerText="Ready!"; topEl.style.color="#2e7d32";
     } else {
-      btn.innerText="Wait "+lockLeft+"s...";
-      timerEl.innerText="Please wait "+lockLeft+" seconds before submitting...";
+      topEl.innerText=lockLeft+"s";
     }
   },1000);
 }
