@@ -54,8 +54,6 @@ body{background:#fff}
 .key-row input{border:none;border-bottom:2px solid #777;padding:8px 4px;font-size:18px;width:280px;outline:none}
 .btn-wrap{margin-top:25px;padding-left:90px}
 .blue-btn{background:linear-gradient(135deg,#5ec8e8,#0b5aa8);color:#fff;border:none;padding:12px 28px;border-radius:25px;font-size:17px;font-weight:500;cursor:pointer;box-shadow:0 6px 14px rgba(11,90,168,.45)}
-
-/* ===== EXAM - I THLALAK ANG CHIAH ===== */
 #exam{display:none;min-height:100vh;background:#fff}
 .exam-header{display:flex;border:2px solid #333}
 .exam-logo{width:200px;padding:8px 10px;display:flex;gap:8px;align-items:center;border-right:1px solid #999;background:#f0f8ff}
@@ -67,12 +65,9 @@ body{background:#fff}
 .exam-info span{font-weight:bold}
 .finish-col{width:190px;display:flex;flex-direction:column}
 .finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
-.finish-btn:hover{background:#1a4fa8}
 .exam-meta{display:flex;border-left:2px solid #333;border-right:2px solid #333;border-bottom:2px solid #333}
 .exam-meta>div{padding:8px 12px;font-size:14px;font-weight:bold;border-right:1px solid #999}
-.exam-meta>div:last-child{border-right:none}
-.exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}
-.exam-meta .remain{flex:2;text-align:center}
+.exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}.exam-meta .remain{flex:2;text-align:center}
 .exam-body{display:flex;min-height:calc(100vh - 140px)}
 .exam-left{flex:1;padding:18px 22px;font-size:15px;line-height:1.7;overflow-y:auto}
 .exam-left p{margin-bottom:12px;text-align:justify}
@@ -167,7 +162,7 @@ body{background:#fff}
   </div>
 </div>
 
-<!-- 6. EXAM - THAR -->
+<!-- 6 EXAM -->
 <div id="exam">
   <div class="exam-header">
     <div class="exam-logo"><div class="logo-circle">🌐</div><div><div style="font-size:12px;font-weight:bold">रा.इ.सू.प्रौ.सं</div><div style="font-size:18px;font-weight:900;color:#0b3d91">NIEL<span style="color:#e65100">IT</span></div><small>ONLINE EXAMINATION</small></div></div>
@@ -194,11 +189,8 @@ body{background:#fff}
         <div class="status-row"><span>Attempted</span><span><span class="dot green">●</span> <span id="attemptCount">0</span></span></div>
         <div class="status-row"><span>Not Attempted</span><span><span class="dot red">■</span> <span id="notAttemptCount">50</span></span></div>
       </div>
-      <div class="choose-box">
-        <h3>Choose Question</h3>
-        <div class="qgrid" id="qgrid"></div>
-      </div>
-      <button class="review-btn" onclick="alert('Review Instruction - Instructions page a let leh ang')">Review Instruction</button>
+      <div class="choose-box"><h3>Choose Question</h3><div class="qgrid" id="qgrid"></div></div>
+      <button class="review-btn" onclick="alert('Review Instruction')">Review Instruction</button>
     </div>
   </div>
   <div class="exam-footer">
@@ -259,37 +251,41 @@ function goToExam(){
   startTimer(); renderExam();
 }
 
-/* EXAM LOGIC - 50 QUESTIONS */
+/* EXAM - Q1-Q15 DAK LUH TAWH, Q16-Q50 LA DAH TUR */
 let fontSize=15;
 function changeFont(d){fontSize=Math.max(12,Math.min(22,fontSize+d)); document.getElementById('examLeft').style.fontSize=fontSize+"px";}
-let questions=[];
-let passageText=`I felt the wall of the tunnel shiver. The master alarm squealed through my earphones. Almost simultaneously, Jack yelled down to me that there was a warning light on. Fleeting but spectacular sights snapped into ans out of view, the snow, the shower of debris, the moon, looming close and big, the dazzling sunshine for once unfiltered by layers of air. The last twelve hours before re-entry were particular bone-chilling. During this period, I had to go up in to command module. Even after the fiery re-entry splashing down in 81° water in south pacific, we could still see our frosty breath inside the command module.`;
-for(let i=1;i<=50;i++){
-  questions.push({
-    passage: i<=5 ? passageText : "This is question "+i+". Read the question carefully and choose the correct option.",
-    q: i==1 ? "The word 'Command Module' used twice in the given passage indicates perhaps that it deals with" : "Question "+i+" - Which is the correct answer?",
-    o: i==1 ? ["an alarming journey","a commanding situation","a journey into outer space","a frightful battle."] : ["Option A - First choice","Option B - Second choice","Option C - Third choice","Option D - Fourth choice"],
-    a: i==1 ? 2 : (i%4)
-  });
-}
+let questions=[
+{q:"Which one is the \"Brain of Computer\"", o:["Motherboard","CPU","RAM","Hard Disk"], a:1},
+{q:"Which one is Input device", o:["Keyboard","Speaker","Printer","Monitor"], a:0},
+{q:"Which one is Output device", o:["Mouse","Monitor","Hard Disk","CPU"], a:1},
+{q:"NIELIT stands for", o:["Navigate Institutional of Electricity & Illegal Test","Non-Institutional of Engineering Illegal Test","National Information of Electronics & Information Technology","National Institute of Electronics & Information Technology"], a:3},
+{q:"CCC stands for", o:["Course on Computer Concepts","Concepts on Computer Course","Computer of Course Concepts","Computer of Concepts Course"], a:0},
+{q:"Full form of UPS is", o:["Ultrasound Power Supply","Unit Power Supply","Uninterruptible Power Supply","Unconditional Power Supply"], a:2},
+{q:"Full form of RAM is", o:["Randomize Access Memory","Read Access Memory","Run Access Memory","Random Access Memory"], a:3},
+{q:"Full form of CPU is", o:["Central Process Unit","Central Processing Unit","Central Perform Unit","Central Performing Unit"], a:1},
+{q:"Who is the \"Father of Computer\"", o:["William Weps","Kelvin Phillips","Charles Babbage","Andrew Green"], a:2},
+{q:"How many digits are there in Aadhaar Number.", o:["10","12","14","16"], a:1},
+{q:"India mobile code is...", o:["+88","+99","+91","+81"], a:2},
+{q:"www stands for....", o:["World Web Wide","World Wide Web","World Web Web","World Wide Wide"], a:1},
+{q:"In banking, ATM stands for", o:["Any Time Money","All Time Money","Automated Teller Machine","Automated Teller Money"], a:2},
+{q:"Which contain 'Mail Merge'?", o:["Microsoft Word","Microsoft Excel","Microsoft Powerpoint","Microsoft Access"], a:0},
+{q:"What is the full form of PDF?", o:["Personal Document Format","Personal Document File","Portable Document Format","Portable Document File"], a:2},
+];
+// Q16-Q50 - LA DAH TUR, TUNAH PLACEHOLDER
+for(let i=16;i<=50;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
+
 let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
 let timeLeft=60*60-11, timerStarted=false;
 function renderExam(){
   let qq=questions[current];
   document.getElementById('qnNo').innerText=current+1;
   document.getElementById('markVal').innerText="1";
-  document.getElementById('examLeft').innerHTML=`<p>${qq.passage}</p><p><b>${qq.q}</b></p>` + qq.o.map((opt,i)=>`<div class="q-opt">${String.fromCharCode(65+i)}. &nbsp; ${opt}</div>`).join('');
+  document.getElementById('examLeft').innerHTML=`<p><b>${qq.q}</b></p>` + qq.o.map((opt,i)=>`<div class="q-opt">${String.fromCharCode(65+i)}. &nbsp; ${opt}</div>`).join('');
   let bottom="";
-  qq.o.forEach((opt,i)=>{
-    bottom+=`<label><input type="radio" name="bottomOpt" ${answers[current]==i?'checked':''} onchange="selectOpt(${i})"> ${String.fromCharCode(65+i)}</label>`;
-  });
+  qq.o.forEach((opt,i)=>{ bottom+=`<label><input type="radio" name="bottomOpt" ${answers[current]==i?'checked':''} onchange="selectOpt(${i})"> ${String.fromCharCode(65+i)}</label>`; });
   document.getElementById('bottomOpts').innerHTML=bottom;
   let grid="";
-  for(let i=0;i<50;i++){
-    let cls = submitted[i] ? "attempted" : "";
-    if(i==current) cls+=" current";
-    grid+=`<button class="${cls}" onclick="goToQ(${i})">${i+1}</button>`;
-  }
+  for(let i=0;i<50;i++){ let cls=submitted[i]?"attempted":""; if(i==current) cls+=" current"; grid+=`<button class="${cls}" onclick="goToQ(${i})">${i+1}</button>`; }
   document.getElementById('qgrid').innerHTML=grid;
   let att=submitted.filter(x=>x).length;
   document.getElementById('attemptCount').innerText=att;
@@ -299,8 +295,7 @@ function selectOpt(i){answers[current]=i;}
 function submitAnswer(){
   if(answers[current]==null){alert("Option pakhat thlang phawt rawh!");return;}
   submitted[current]=true;
-  if(current<49){current++; renderExam();}
-  else{renderExam(); alert("Answer Submitted!");}
+  if(current<49){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
 }
 function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
 function goToQ(i){current=i; renderExam();}
@@ -316,12 +311,7 @@ function finishExam(){
 }
 function startTimer(){
   if(timerStarted) return; timerStarted=true;
-  setInterval(()=>{
-    timeLeft--;
-    let h=Math.floor(timeLeft/3600), m=Math.floor((timeLeft%3600)/60), s=timeLeft%60;
-    document.getElementById('remainTime').innerText=`${h} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
-    if(timeLeft<=0){alert("Time Up!"); finishExam();}
-  },1000);
+  setInterval(()=>{ timeLeft--; let h=Math.floor(timeLeft/3600), m=Math.floor((timeLeft%3600)/60), s=timeLeft%60; document.getElementById('remainTime').innerText=`${h} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`; if(timeLeft<=0){alert("Time Up!"); finishExam();} },1000);
 }
 </script>
 </body>
