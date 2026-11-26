@@ -14,7 +14,6 @@ body{background:#fff}
 .logo-text .eng span{color:#e65100}
 .header h1{font-family:"Times New Roman",serif;font-size:32px;font-weight:bold}
 @media(max-width:600px){.header h1{font-size:23px}}
-/* SCREEN 1 */
 #landing{min-height:100vh}
 .info-table{padding:35px 20px 10px;max-width:900px;margin:0 auto}
 .row{display:flex;justify-content:space-between;padding:14px 0;flex-wrap:wrap}
@@ -23,7 +22,6 @@ body{background:#fff}
 .red{color:#d94f30}.green{color:#2e7d32}
 .proceed-wrap{max-width:900px;margin:0 auto;padding:15px 20px}
 .proceed-btn{background:linear-gradient(135deg,#5ec8e8,#0b6fa8);color:#fff;border:none;padding:13px 28px;border-radius:25px;font-size:19px;font-weight:bold;cursor:pointer;box-shadow:0 5px 15px rgba(11,111,168,.4)}
-/* SCREEN 2 */
 #instructions{display:none;max-width:1000px;margin:0 auto;padding:10px 15px 30px}
 .inst-head{text-align:center;padding:15px 0}.inst-head h2{font-size:22px}
 .two-col{display:flex;gap:20px}.two-col>div{flex:1;font-size:14px;line-height:1.6;text-align:justify}
@@ -35,11 +33,9 @@ body{background:#fff}
 .check-row{text-align:left;margin:15px 0;font-size:14px;line-height:1.5}.check-row input{width:18px;height:18px;vertical-align:middle;margin-right:6px;accent-color:#0b3d91}
 .start-wrap{text-align:right;margin-top:10px}.start-btn{background:#1a5fb4;color:#fff;border:none;padding:12px 20px;font-size:16px;font-weight:bold;cursor:pointer;border-radius:3px}
 .start-btn:disabled{background:#999;cursor:not-allowed}.ganga{text-align:center;color:#d94f30;font-weight:bold;margin-top:18px}
-/* SCREEN 3 */
 #candidateLogin{display:none;min-height:100vh}
 .login-top{background:linear-gradient(to bottom,#5ab0e0,#a8d8f0,#d8f0ff);padding:8px 0 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .login-top h2{font-family:"Times New Roman",serif;font-size:42px;font-weight:bold;text-shadow:1px 1px 0 #fff}
-@media(max-width:600px){.login-top h2{font-size:32px}}
 .login-form{max-width:700px;margin:40px auto;padding:0 20px}
 .login-row{display:flex;align-items:center;margin:18px 0;gap:15px;flex-wrap:wrap}
 .login-row .lbl{width:180px;font-family:"Times New Roman",serif;font-size:24px;font-weight:bold;color:#00008B}
@@ -47,11 +43,9 @@ body{background:#fff}
 .login-row input{border:none;border-bottom:2px solid #555;padding:8px 4px;font-size:18px;width:280px;outline:none;background:transparent}
 .login-btn-wrap{margin-top:45px;padding-left:95px}
 .login-btn{background:linear-gradient(135deg,#2ea5e0,#0b6fa8);color:#fff;border:none;padding:10px 22px;border-radius:18px;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 4px 10px rgba(11,111,168,.4)}
-/* SCREEN 4 & 5 - START EXAM */
 .startExamPage{display:none;min-height:100vh;background:#fff}
 .start-top{background:linear-gradient(to bottom,#8cc8f0,#d8f0ff);display:flex;align-items:center;gap:15px;padding:10px 15px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .start-top h2{font-family:"Times New Roman",serif;font-size:38px;font-weight:bold;text-shadow:1px 1px 0 #fff}
-@media(max-width:600px){.start-top h2{font-size:28px}}
 .start-details{max-width:800px;margin:35px auto;padding:0 25px}
 .detail-row{display:flex;align-items:center;gap:15px;margin:17px 0;flex-wrap:wrap}
 .detail-row .lbl{width:280px;font-family:"Times New Roman",serif;font-size:23px;font-weight:bold;color:#00008B}
@@ -60,25 +54,57 @@ body{background:#fff}
 .key-row input{border:none;border-bottom:2px solid #777;padding:8px 4px;font-size:18px;width:280px;outline:none}
 .btn-wrap{margin-top:25px;padding-left:90px}
 .blue-btn{background:linear-gradient(135deg,#5ec8e8,#0b5aa8);color:#fff;border:none;padding:12px 28px;border-radius:25px;font-size:17px;font-weight:500;cursor:pointer;box-shadow:0 6px 14px rgba(11,90,168,.45)}
-/* SCREEN 6 EXAM */
-#exam{display:none}
-.top{background:#0b3d91;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-#timer{font-size:22px;font-weight:bold;background:#ffcc00;color:#000;padding:5px 12px;border-radius:5px}
-.card{background:#fff;padding:15px;border-radius:10px;margin:10px;box-shadow:0 2px 5px #ccc}
-button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:16px}
-.next{background:#0b3d91;color:#fff}.prev{background:#ddd}.submit{background:#e60000;color:#fff;width:100%;margin-top:15px}
-.opt{display:block;background:#f8f9fa;padding:10px;margin:7px 0;border:1px solid #ddd;border-radius:6px;cursor:pointer}
-.opt input{margin-right:8px}
-.qnav{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.qnav button{width:38px;height:38px;padding:0;background:#eee;border-radius:50%}
-.qnav button.done{background:#4caf50;color:#fff}
-.qnav button.current{background:#0b3d91;color:#fff}
-#result{display:none;text-align:center;padding:20px}
+
+/* ===== EXAM - I THLALAK ANG CHIAH ===== */
+#exam{display:none;min-height:100vh;background:#fff}
+.exam-header{display:flex;border:2px solid #333}
+.exam-logo{width:200px;padding:8px 10px;display:flex;gap:8px;align-items:center;border-right:1px solid #999;background:#f0f8ff}
+.exam-logo .logo-circle{width:45px;height:45px;font-size:16px}
+.exam-logo small{font-size:10px}
+.exam-info{flex:1;display:flex;flex-wrap:wrap}
+.exam-info>div{flex:1;min-width:140px;padding:8px 12px;border-right:1px solid #999;font-size:14px}
+.exam-info b{color:#1a2a6a}
+.exam-info span{font-weight:bold}
+.finish-col{width:190px;display:flex;flex-direction:column}
+.finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
+.finish-btn:hover{background:#1a4fa8}
+.exam-meta{display:flex;border-left:2px solid #333;border-right:2px solid #333;border-bottom:2px solid #333}
+.exam-meta>div{padding:8px 12px;font-size:14px;font-weight:bold;border-right:1px solid #999}
+.exam-meta>div:last-child{border-right:none}
+.exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}
+.exam-meta .remain{flex:2;text-align:center}
+.exam-body{display:flex;min-height:calc(100vh - 140px)}
+.exam-left{flex:1;padding:18px 22px;font-size:15px;line-height:1.7;overflow-y:auto}
+.exam-left p{margin-bottom:12px;text-align:justify}
+.exam-left .q-opt{margin:6px 0;font-size:15px}
+.exam-right{width:210px;border-left:2px solid #333;background:#cfe6ff;display:flex;flex-direction:column}
+.status-box{padding:10px;background:#fff;border-bottom:2px solid #333}
+.status-box h3{text-align:center;font-size:15px;margin-bottom:8px}
+.status-row{display:flex;justify-content:space-between;font-size:13px;font-weight:bold;padding:4px 0}
+.dot{width:22px;height:22px;border-radius:50%;display:inline-block;text-align:center;line-height:22px;color:#fff;font-size:12px}
+.dot.green{background:#2e9e4a}.dot.red{background:#e60000}
+.choose-box{padding:10px;background:#cfe6ff;flex:1}
+.choose-box h3{text-align:center;font-size:15px;margin-bottom:10px}
+.qgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.qgrid button{padding:7px 0;font-size:12px;font-weight:bold;border:1px solid #999;cursor:pointer;background:#e60000;color:#fff}
+.qgrid button.attempted{background:#2e9e4a;color:#fff}
+.qgrid button.current{background:#ffcc00;color:#000;border:2px solid #000}
+.review-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;width:100%;font-size:13px;cursor:pointer;margin-top:5px}
+.exam-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border-top:1px solid #999;background:#fff;position:sticky;bottom:0}
+.exam-footer .opts{display:flex;gap:28px}
+.exam-footer label{font-size:16px;font-weight:bold;cursor:pointer}
+.exam-footer label input{width:20px;height:20px;vertical-align:middle;margin-right:8px;accent-color:#333}
+.footer-btns{display:flex;gap:12px;align-items:center}
+.pill-btn{border:2px solid #333;background:#fff;padding:8px 16px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.pill-btn.submit{color:#2e7d32}.pill-btn.reset{color:#e60000}
+.font-btn{border:1px solid #999;background:#fff;padding:4px 8px;font-weight:bold;cursor:pointer}
+#result{display:none;text-align:center;padding:30px}
+@media(max-width:800px){.exam-right{width:160px}.exam-info>div{min-width:110px}.qgrid{grid-template-columns:repeat(5,1fr)}}
 </style>
 </head>
 <body>
 
-<!-- 1. NIELIT EXAMINATION -->
+<!-- 1 -->
 <div id="landing">
   <div class="header"><div style="display:flex;gap:5px;align-items:center"><div class="logo-circle">🌐</div><div class="logo-text"><div class="hindi">रा.इ.सू.प्रौ.सं</div><div class="eng">NIEL<span>IT</span></div></div></div><h1>NIELIT Examination</h1></div>
   <div class="info-table">
@@ -90,17 +116,17 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
   <div class="proceed-wrap"><button class="proceed-btn" onclick="goInstructions()">Proceed</button></div>
 </div>
 
-<!-- 2. INSTRUCTIONS -->
+<!-- 2 -->
 <div id="instructions">
   <div class="inst-head"><h2>General Instructions / सामान्य निर्देश</h2><p>Please read the instructions carefully before starting the examination</p></div>
   <div class="two-col">
-    <div><h3>9) उत्तर चुनना / Answering:</h3><p>a) किसी प्रश्न का उत्तर देने के लिए, विकल्प बटन पर क्लिक करें।</p><p>b) अपने चुने हुए उत्तर को बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें।</p><p>c) अपना चुने हुए उत्तर को अचयनित करने के लिए, <b>"Reset Answer"</b> बटन पर क्लिक करें।</p><p class="red-text">सावधानी: ध्यान दें कि वर्तमान प्रश्न के लिए आपका उत्तर सहेजा नहीं जाएगा, यदि आप किसी अन्य प्रश्न पर सीधे उसकी प्रश्न संख्या पर क्लिक करके नेविगेट करते हैं।</p><h3>10) परीक्षा समाप्त / सब्मिट करें:</h3><p>a) परीक्षा खत्म करने के लिए पहले <b>"Finish Exam"</b> बटन पर क्लिक करें और फिर <b>"Confirm"</b> बटन पर क्लिक करें। कभी भी <b>"Close Exam Panel"</b> बटन पर क्लिक करके परीक्षा खत्म करने का प्रयास न करें।</p><p>b) घड़ी सर्वर पर सेट हो जाएगी। काउंटडाउन टाइमर शेष समय को प्रदर्शित करेगा।</p><h3>11) उम्मीदवार को यह सुनिश्चित करना चाहिए कि वह परीक्षा केंद्र की उपस्थिति पंजिका पर उसी तरह से अपने हस्ताक्षर करें जैसे उन्होंने आवेदन पत्र की प्रति अग्रेषित करते समय किया था। NIELIT अपने विवेक से किसी भी उम्मीदवार के रिकॉर्ड की जाँच कर सकता है।</h3><h3>12) यदि प्रश्नों के हिंदी और अंग्रेजी संस्करण के बीच कोई विसंगति है, तो अंग्रेजी संस्करण मान्य होगा।</h3><h3>13) परीक्षा के दौरान किसी भी प्रकार की प्रणाली की विफलता के मामले में, तुरंत परीक्षा अधीक्षक (ई.एस.) को सूचित करें।</h3></div>
-    <div><h3>9) Answering:</h3><p>a) To answer a question, click on the option button.</p><p>b) To change your chosen answer, click on the button of another option.</p><p>c) To deselect or reset your chosen answer, click on the <b>"Reset Answer"</b> button.</p><p>d) To change your chosen answer, click on the button of another option and submit your answer.</p><p>e) To change your chosen answer, click on the button of another option and submit your answer.</p><p class="red-text">Caution: Note that your answer for the current question will not be saved, if you navigate to another question directly (without submitting the answer) by clicking on its question number.</p><h3>10) Finish/Submit the examination:</h3><p>a) To finish the exam, first click on the <b>"Finish Exam"</b> button and then <b>"Confirm"</b> button. This is mandatory process to finish the exam. Never try to finish the exam by clicking <b>"Close Exam Panel"</b> button.</p><p>b) The clock will be set at the server. The countdown timer on the screen will display the remaining time available. When the timer reaches zero, the examination will end by itself.</p><h3>11) Candidate must ensure that s/he appends her/his signature on the attendance sheet at the examination centre in the same manner as signed by them while forwarding the copy of application form to NIELIT. NIELIT at its own discretion may check record of any/all candidate(s) and if any mismatch is found, there is a possibility of cancellation of examination of such candidate(s).</h3><h3>12) If there is any inconsistency between the Hindi and English versions of questions, the English version of question & answer will prevail.</h3><h3>13) In case of any system failure/technical error while running/finishing the exam, please inform the ES immediately.</h3></div>
+    <div><h3>9) उत्तर चुनना / Answering:</h3><p>a) किसी प्रश्न का उत्तर देने के लिए, विकल्प बटन पर क्लिक करें।</p><p>b) अपने चुने हुए उत्तर को बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें।</p><p>c) अपना चुने हुए उत्तर को अचयनित करने के लिए, <b>"Reset Answer"</b> बटन पर क्लिक करें।</p><p class="red-text">सावधानी: ध्यान दें कि वर्तमान प्रश्न के लिए आपका उत्तर सहेजा नहीं जाएगा, यदि आप किसी अन्य प्रश्न पर सीधे उसकी प्रश्न संख्या पर क्लिक करके नेविगेट करते हैं।</p><h3>10) परीक्षा समाप्त / सब्मिट करें:</h3><p>a) परीक्षा खत्म करने के लिए पहले <b>"Finish Exam"</b> बटन पर क्लिक करें और फिर <b>"Confirm"</b> बटन पर क्लिक करें।</p><h3>11) उम्मीदवार को यह सुनिश्चित करना चाहिए कि वह परीक्षा केंद्र की उपस्थिति पंजिका पर उसी तरह से अपने हस्ताक्षर करें।</h3><h3>12) यदि प्रश्नों के हिंदी और अंग्रेजी संस्करण के बीच कोई विसंगति है, तो अंग्रेजी संस्करण मान्य होगा।</h3><h3>13) परीक्षा के दौरान किसी भी प्रकार की प्रणाली की विफलता के मामले में, तुरंत परीक्षा अधीक्षक को सूचित करें।</h3></div>
+    <div><h3>9) Answering:</h3><p>a) To answer a question, click on the option button.</p><p>b) To change your chosen answer, click on the button of another option.</p><p>c) To deselect or reset your chosen answer, click on the <b>"Reset Answer"</b> button.</p><p class="red-text">Caution: Note that your answer for the current question will not be saved, if you navigate to another question directly by clicking on its question number.</p><h3>10) Finish/Submit the examination:</h3><p>a) To finish the exam, first click on the <b>"Finish Exam"</b> button and then <b>"Confirm"</b> button.</p><h3>11) Candidate must ensure that s/he appends her/his signature on the attendance sheet.</h3><h3>12) If there is any inconsistency between Hindi and English versions, English version will prevail.</h3><h3>13) In case of any system failure, please inform the ES immediately.</h3></div>
   </div>
   <div class="bottom-box"><div class="sys-no">System Number : nielit1-002</div><div class="roll-row"><span>RollNo/ Login Id:</span><input type="text" id="rollNo" placeholder="HQ29" value="HQ29"></div><div class="check-row"><label><input type="checkbox" id="agreeBox" onchange="checkAgree()" checked> I have read and understood all the instructions thoroughly and I shall abide by the instructions.</label></div><div class="start-wrap"><button class="start-btn" id="startBtn" onclick="goCandidateLogin()">परीक्षा प्रारम्भ करें / Start the exam</button></div><div class="ganga">Ganga</div></div>
 </div>
 
-<!-- 3. CANDIDATE LOGIN -->
+<!-- 3 -->
 <div id="candidateLogin">
   <div class="login-top"><h2>Candidate Login</h2></div>
   <div class="login-form">
@@ -108,11 +134,10 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
     <div class="login-row"><span class="lbl">Login Id:</span><span class="val" id="dispLoginId">hq1224228644</span></div>
     <div class="login-row"><span class="lbl">Password:</span><input type="password" id="passwordInput" placeholder="Please Enter Password !"></div>
     <div class="login-btn-wrap"><button class="login-btn" onclick="doLogin()">Login</button></div>
-    <p style="margin-top:25px;font-size:13px;color:#666"></p>
   </div>
 </div>
 
-<!-- 4. START EXAM - 1 : LOGIN KEY + SUBMIT -->
+<!-- 4 -->
 <div id="startExam1" class="startExamPage">
   <div class="start-top"><div style="display:flex;gap:5px;align-items:center"><div class="logo-circle" style="width:48px;height:48px;font-size:18px">🌐</div><div class="logo-text"><div class="hindi">रा.इ.सू.प्रौ.सं</div><div class="eng" style="font-size:20px">NIEL<span>IT</span></div></div></div><h2>Start Exam</h2></div>
   <div class="start-details">
@@ -124,17 +149,16 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
     <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">122</span></div>
     <div class="detail-row"><span class="lbl">Total Duration:</span><span class="val">60 Minutes</span></div>
     <div class="key-row"><input type="text" id="loginKey" placeholder="Enter Login Key !"><button class="blue-btn" style="padding:10px 22px" onclick="goStartExam2()">Submit</button></div>
-    <p style="margin-top:15px;font-size:13px;color:#666"></p>
   </div>
 </div>
 
-<!-- 5. START EXAM - 2 : START EXAM BUTTON CHAUH -->
+<!-- 5 -->
 <div id="startExam2" class="startExamPage">
   <div class="start-top"><div style="display:flex;gap:5px;align-items:center"><div class="logo-circle" style="width:48px;height:48px;font-size:18px">🌐</div><div class="logo-text"><div class="hindi">रा.इ.सू.प्रौ.सं</div><div class="eng" style="font-size:20px">NIEL<span>IT</span></div></div></div><h2>Start Exam</h2></div>
   <div class="start-details">
     <div class="detail-row"><span class="lbl">System Time:</span><span class="val sysTime">11:08:33</span></div>
-    <div class="detail-row"><span class="lbl">Login Id:</span><span class="val finalLogin2">HQ29</span></div>
-    <div class="detail-row"><span class="lbl">Student Name:</span><span class="val finalStudent2">Student29</span></div>
+    <div class="detail-row"><span class="lbl">Login Id:</span><span class="val">HQ29</span></div>
+    <div class="detail-row"><span class="lbl">Student Name:</span><span class="val">Student29</span></div>
     <div class="detail-row"><span class="lbl">Course:</span><span class="val">Online_Demo</span></div>
     <div class="detail-row"><span class="lbl">Paper Name:</span><span class="val">Online_Demo</span></div>
     <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">100</span></div>
@@ -143,15 +167,53 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
   </div>
 </div>
 
-<!-- 6. EXAM -->
+<!-- 6. EXAM - THAR -->
 <div id="exam">
-  <div class="top"><div><b>NIELIT CCC</b><br><small id="showName">Candidate</small></div><div id="timer">60:00</div></div>
-  <div id="quizBox">
-    <div class="card"><div id="qtext" style="font-size:18px;font-weight:bold"></div><div id="opts"></div>
-    <div style="display:flex;justify-content:space-between;margin-top:15px;flex-wrap:wrap;gap:8px"><button class="prev" onclick="prevQ()">← Prev</button><button class="next" onclick="nextQ()">Next →</button><button style="background:#ff9800;color:#fff" onclick="resetAns()">Reset Answer</button></div></div>
-    <div class="card"><b>Question Palette:</b><div class="qnav" id="qnav"></div><button class="submit" onclick="submitExam()">FINISH EXAM</button></div>
+  <div class="exam-header">
+    <div class="exam-logo"><div class="logo-circle">🌐</div><div><div style="font-size:12px;font-weight:bold">रा.इ.सू.प्रौ.सं</div><div style="font-size:18px;font-weight:900;color:#0b3d91">NIEL<span style="color:#e65100">IT</span></div><small>ONLINE EXAMINATION</small></div></div>
+    <div class="exam-info">
+      <div><b>Exam Name:</b> <span>Online_Demo</span></div>
+      <div><b>Login Id:</b> <span id="examLoginId">HQ29</span></div>
+      <div><b>Name:</b> <span id="examName">Student29</span></div>
+      <div><b>Language</b><br><span>English</span></div>
+    </div>
+    <div class="finish-col"><button class="finish-btn" onclick="finishExam()">Finish Exam</button><div style="flex:1"></div></div>
   </div>
-  <div id="result" class="card"><h2 id="scoreText"></h2><p id="passText"></p><p id="detail"></p><button class="next" onclick="location.reload()">TRY AGAIN</button></div>
+  <div class="exam-meta">
+    <div class="qn">QN: <span id="qnNo">1</span></div>
+    <div>Total Marks: 100</div>
+    <div>Total Time: 60 minutes</div>
+    <div class="remain">Remaining Time: <span id="remainTime">0 : 59 : 49</span></div>
+    <div class="mark">Mark: <span id="markVal">1</span></div>
+  </div>
+  <div class="exam-body">
+    <div class="exam-left" id="examLeft"></div>
+    <div class="exam-right">
+      <div class="status-box">
+        <h3>Question Status</h3>
+        <div class="status-row"><span>Attempted</span><span><span class="dot green">●</span> <span id="attemptCount">0</span></span></div>
+        <div class="status-row"><span>Not Attempted</span><span><span class="dot red">■</span> <span id="notAttemptCount">50</span></span></div>
+      </div>
+      <div class="choose-box">
+        <h3>Choose Question</h3>
+        <div class="qgrid" id="qgrid"></div>
+      </div>
+      <button class="review-btn" onclick="alert('Review Instruction - Instructions page a let leh ang')">Review Instruction</button>
+    </div>
+  </div>
+  <div class="exam-footer">
+    <div class="opts" id="bottomOpts"></div>
+    <div class="footer-btns">
+      <button class="font-btn" onclick="changeFont(1)">A++</button>
+      <button class="font-btn" onclick="changeFont(-1)">A--</button>
+      <button class="pill-btn submit" onclick="submitAnswer()">Submit Answer</button>
+      <button class="pill-btn reset" onclick="resetAnswer()">Reset Answer</button>
+    </div>
+  </div>
+  <div id="result" style="display:none;text-align:center;padding:30px">
+    <h2 id="scoreText"></h2><p id="passText"></p><p id="detailText"></p><br>
+    <button class="blue-btn" onclick="location.reload()">TRY AGAIN</button>
+  </div>
 </div>
 
 <script>
@@ -170,21 +232,15 @@ function goCandidateLogin(){
 function doLogin(){
   let pw=document.getElementById('passwordInput').value.trim();
   if(!pw){alert("Please Enter Password !");return;}
-  // Start Exam 1 ah data dah
   document.querySelectorAll('.finalLogin').forEach(e=>e.innerText=savedRoll);
   let num=savedRoll.replace(/[^0-9]/g,'')||"29";
   document.querySelectorAll('.finalStudent').forEach(e=>e.innerText="Student"+num);
-  // Start Exam 2 ah pawh HQ29 ang khan dah - a tak ah chuan a inthlak
-  document.querySelectorAll('.finalLogin2').forEach(e=>e.innerText="HQ29");
-  document.querySelectorAll('.finalStudent2').forEach(e=>e.innerText="Student29");
   document.getElementById('candidateLogin').style.display='none';
   document.getElementById('startExam1').style.display='block';
-  window.scrollTo(0,0);
-  updateSysTime();
+  window.scrollTo(0,0); updateSysTime();
 }
 function updateSysTime(){
-  let d=new Date();
-  let t=String(d.getHours()).padStart(2,'0')+":"+String(d.getMinutes()).padStart(2,'0')+":"+String(d.getSeconds()).padStart(2,'0');
+  let d=new Date(); let t=String(d.getHours()).padStart(2,'0')+":"+String(d.getMinutes()).padStart(2,'0')+":"+String(d.getSeconds()).padStart(2,'0');
   document.querySelectorAll('.sysTime').forEach(e=>e.innerText=t);
 }
 setInterval(updateSysTime,1000);
@@ -196,54 +252,77 @@ function goStartExam2(){
   window.scrollTo(0,0);
 }
 function goToExam(){
-  document.getElementById('showName').innerText="Login Id: "+savedRoll;
+  document.getElementById('examLoginId').innerText="HQ29";
+  document.getElementById('examName').innerText="Student29";
   document.getElementById('startExam2').style.display='none';
   document.getElementById('exam').style.display='block';
-  startTimer();
+  startTimer(); renderExam();
 }
-const questions=[
-{q:"What is the full form of CCC?", o:["Course on Computer Concepts","Certificate in Computer Course","Course on Computer Certificate","Computer Course Certificate"], a:0},
-{q:"What is the full form of CPU?", o:["Central Processing Unit","Central Program Unit","Computer Processing Unit","Central Process Unit"], a:0},
-{q:"Which is the brain of computer?", o:["CPU","RAM","Monitor","Keyboard"], a:0},
-{q:"What is the full form of RAM?", o:["Random Access Memory","Read Access Memory","Rapid Access Memory","Random Active Memory"], a:0},
-{q:"What is the full form of ROM?", o:["Read Only Memory","Random Only Memory","Read Open Memory","Rapid Only Memory"], a:0},
-{q:"Which device is used for input?", o:["Keyboard","Monitor","Printer","Speaker"], a:0},
-{q:"Which device is used for output?", o:["Monitor","Mouse","Keyboard","Scanner"], a:0},
-{q:"1 KB = ?", o:["1024 Bytes","1000 Bytes","1024 MB","100 Bytes"], a:0},
-{q:"What is the extension of MS Word file?", o:[".docx",".xlsx",".pptx",".txt"], a:0},
-{q:"What is the shortcut to Copy?", o:["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+Z"], a:0},
-];
-let current=0, answers=new Array(questions.length).fill(null);
-let timeLeft=60*60, timerStarted=false;
-function render(){
-  let q=questions[current];
-  document.getElementById('qtext').innerText=(current+1)+". "+q.q;
-  let html="";
-  q.o.forEach((opt,i)=>{ html+=`<label class="opt"><input type="radio" name="opt" ${answers[current]==i?'checked':''} onclick="selectOpt(${i})"> ${opt}</label>`; });
-  document.getElementById('opts').innerHTML=html;
-  let nav="";
-  questions.forEach((_,i)=>{ nav+=`<button class="${answers[i]!=null?'done':''} ${i==current?'current':''}" onclick="goTo(${i})">${i+1}</button>`; });
-  document.getElementById('qnav').innerHTML=nav;
+
+/* EXAM LOGIC - 50 QUESTIONS */
+let fontSize=15;
+function changeFont(d){fontSize=Math.max(12,Math.min(22,fontSize+d)); document.getElementById('examLeft').style.fontSize=fontSize+"px";}
+let questions=[];
+let passageText=`I felt the wall of the tunnel shiver. The master alarm squealed through my earphones. Almost simultaneously, Jack yelled down to me that there was a warning light on. Fleeting but spectacular sights snapped into ans out of view, the snow, the shower of debris, the moon, looming close and big, the dazzling sunshine for once unfiltered by layers of air. The last twelve hours before re-entry were particular bone-chilling. During this period, I had to go up in to command module. Even after the fiery re-entry splashing down in 81° water in south pacific, we could still see our frosty breath inside the command module.`;
+for(let i=1;i<=50;i++){
+  questions.push({
+    passage: i<=5 ? passageText : "This is question "+i+". Read the question carefully and choose the correct option.",
+    q: i==1 ? "The word 'Command Module' used twice in the given passage indicates perhaps that it deals with" : "Question "+i+" - Which is the correct answer?",
+    o: i==1 ? ["an alarming journey","a commanding situation","a journey into outer space","a frightful battle."] : ["Option A - First choice","Option B - Second choice","Option C - Third choice","Option D - Fourth choice"],
+    a: i==1 ? 2 : (i%4)
+  });
 }
-function selectOpt(i){answers[current]=i;render();}
-function resetAns(){answers[current]=null;render();}
-function nextQ(){if(current<questions.length-1){current++;render();}}
-function prevQ(){if(current>0){current--;render();}}
-function goTo(i){current=i;render();}
-function submitExam(){
+let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
+let timeLeft=60*60-11, timerStarted=false;
+function renderExam(){
+  let qq=questions[current];
+  document.getElementById('qnNo').innerText=current+1;
+  document.getElementById('markVal').innerText="1";
+  document.getElementById('examLeft').innerHTML=`<p>${qq.passage}</p><p><b>${qq.q}</b></p>` + qq.o.map((opt,i)=>`<div class="q-opt">${String.fromCharCode(65+i)}. &nbsp; ${opt}</div>`).join('');
+  let bottom="";
+  qq.o.forEach((opt,i)=>{
+    bottom+=`<label><input type="radio" name="bottomOpt" ${answers[current]==i?'checked':''} onchange="selectOpt(${i})"> ${String.fromCharCode(65+i)}</label>`;
+  });
+  document.getElementById('bottomOpts').innerHTML=bottom;
+  let grid="";
+  for(let i=0;i<50;i++){
+    let cls = submitted[i] ? "attempted" : "";
+    if(i==current) cls+=" current";
+    grid+=`<button class="${cls}" onclick="goToQ(${i})">${i+1}</button>`;
+  }
+  document.getElementById('qgrid').innerHTML=grid;
+  let att=submitted.filter(x=>x).length;
+  document.getElementById('attemptCount').innerText=att;
+  document.getElementById('notAttemptCount').innerText=50-att;
+}
+function selectOpt(i){answers[current]=i;}
+function submitAnswer(){
+  if(answers[current]==null){alert("Option pakhat thlang phawt rawh!");return;}
+  submitted[current]=true;
+  if(current<49){current++; renderExam();}
+  else{renderExam(); alert("Answer Submitted!");}
+}
+function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
+function goToQ(i){current=i; renderExam();}
+function finishExam(){
   if(!confirm("Finish Exam i duh tak tak em?")) return;
-  let correct=0; answers.forEach((a,i)=>{if(a==questions[i].a) correct++;});
-  document.getElementById('quizBox').style.display='none';
+  let correct=0; submitted.forEach((s,i)=>{ if(s && answers[i]==questions[i].a) correct++; });
+  document.querySelector('.exam-body').style.display='none';
+  document.querySelector('.exam-footer').style.display='none';
   document.getElementById('result').style.display='block';
-  document.getElementById('scoreText').innerText=`Your Score: ${correct} / ${questions.length}`;
-  document.getElementById('passText').innerText=correct>=questions.length/2?"✅ PASS":"❌ FAIL - Zir leh rawh";
-  document.getElementById('detail').innerText=`Attempted: ${answers.filter(a=>a!=null).length} | Correct: ${correct}`;
+  document.getElementById('scoreText').innerText=`Your Score: ${correct} / 50`;
+  document.getElementById('passText').innerText=correct>=25?"✅ PASS":"❌ FAIL";
+  document.getElementById('detailText').innerText=`Attempted: ${submitted.filter(x=>x).length} | Correct: ${correct}`;
 }
 function startTimer(){
   if(timerStarted) return; timerStarted=true;
-  setInterval(()=>{ timeLeft--; let m=Math.floor(timeLeft/60), s=timeLeft%60; document.getElementById('timer').innerText=`${m}:${s<10?'0':''}${s}`; if(timeLeft<=0){alert("Time Up!");submitExam();} },1000);
+  setInterval(()=>{
+    timeLeft--;
+    let h=Math.floor(timeLeft/3600), m=Math.floor((timeLeft%3600)/60), s=timeLeft%60;
+    document.getElementById('remainTime').innerText=`${h} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`;
+    if(timeLeft<=0){alert("Time Up!"); finishExam();}
+  },1000);
 }
-render();
 </script>
 </body>
 </html>
