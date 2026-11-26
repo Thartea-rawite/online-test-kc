@@ -1,81 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CCC Exam - Login</title>
+<title>NIELIT Examination</title>
 <style>
-  body {
-    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-    background: #f0f4f8; display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; margin: 0; padding: 20px; font-size: 17px;
-    -webkit-font-smoothing: antialiased;
-  }
- .container {
-    background: white; max-width: 750px; width: 100%;
-    padding: 40px; border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #0056b3;
-  }
- .header {text-align: center; margin-bottom: 30px;}
- .header img {width: 140px; margin-bottom: 15px;}
- .header h1 {color: #0056b3; margin: 5px 0; font-size: 26px; font-weight: 700;}
- .input-group {margin: 25px 0;}
- .input-group label {font-weight: 600; color: #222; font-size: 18px;}
- .input-group input {
-    width: 100%; padding: 14px; margin-top: 10px;
-    border: 2px solid #ccc; border-radius: 8px; font-size: 18px;
-    box-sizing: border-box; font-family: inherit;
-  }
- .instructions {
-    background: #e7f1ff; padding: 25px; border-radius: 10px;
-    border-left: 5px solid #0056b3; margin: 25px 0;
-  }
- .instructions h3 {margin-top: 0; color: #0056b3; font-size: 20px;}
- .instructions ul {margin: 12px 0; padding-left: 22px;}
- .instructions li {margin: 12px 0; color: #333; font-size: 17px; line-height: 1.6;}
- .btn {
-    width: 100%; padding: 16px; background: #0056b3; color: white;
-    border: none; border-radius: 8px; font-size: 19px; font-weight: 700;
-    cursor: pointer; letter-spacing: 0.5px;
-  }
- .btn:hover {background: #003d82;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
+body{background:#fff}
+
+/* ===== SCREEN 1 - SYSTEM CHECK - TAK ANG CHIAH ===== */
+#landing{width:100%;min-height:100vh;background:#fff}
+.header{
+  background: linear-gradient(to bottom, #a8d0f0, #cce6ff);
+  padding:12px 15px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:2px solid #8ab8e0;
+}
+.logo-box{display:flex;align-items:center;gap:5px}
+.logo-circle{
+  width:52px;height:52px;border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #4aa3df, #0b3d91);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:22px;font-weight:bold;
+  border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,0.2);
+  position:relative;overflow:hidden;
+}
+.logo-text{line-height:1}
+.logo-text .hindi{font-size:13px;font-weight:bold;color:#1a3a5a}
+.logo-text .eng{font-size:24px;font-weight:900;color:#0b3d91;letter-spacing:1px}
+.logo-text .eng span{color:#e65100}
+.header h1{
+  font-family:"Times New Roman", serif;
+  font-size:32px;font-weight:bold;color:#000;
+  letter-spacing:0.5px;text-shadow:1px 1px 0 #fff;
+}
+@media(max-width:600px){.header h1{font-size:24px}.logo-text .eng{font-size:18px}}
+
+.info-table{padding:35px 20px 10px 20px;max-width:900px;margin:0 auto}
+.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:5px}
+.row .label{
+  font-family:"Times New Roman", serif;
+  font-size:22px;font-weight:bold;color:#00008B;
+}
+.row .value{
+  font-family:"Times New Roman", serif;
+  font-size:21px;font-weight:bold;
+}
+.red{color:#d94f30}
+.green{color:#2e7d32}
+@media(max-width:600px){.row .label{font-size:19px}.row .value{font-size:18px}}
+
+.proceed-wrap{max-width:900px;margin:0 auto;padding:15px 20px}
+.proceed-btn{
+  background: linear-gradient(135deg, #5ec8e8, #0b6fa8);
+  color:#fff;border:none;
+  padding:13px 28px;border-radius:25px;
+  font-size:19px;font-weight:bold;cursor:pointer;
+  box-shadow:0 5px 15px rgba(11,111,168,0.4);
+}
+.proceed-btn:active{transform:scale(0.97)}
+
+/* ===== SCREEN 2 - CANDIDATE LOGIN ===== */
+#login{display:none;max-width:500px;margin:30px auto;padding:20px}
+.login-card{background:#fff;border:2px solid #0b3d91;border-radius:10px;overflow:hidden}
+.login-head{background:#0b3d91;color:#fff;padding:15px;text-align:center;font-size:20px;font-weight:bold}
+.login-body{padding:20px}
+.login-body label{display:block;margin:12px 0 5px;font-weight:bold;color:#333}
+.login-body input, .login-body select{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:16px}
+.start-btn{background:#0b3d91;color:#fff;width:100%;padding:14px;border:none;border-radius:6px;font-size:18px;font-weight:bold;margin-top:20px;cursor:pointer}
+
+/* ===== SCREEN 3 - EXAM ===== */
+#exam{display:none}
+.top{background:#0b3d91;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+#timer{font-size:22px;font-weight:bold;background:#ffcc00;color:#000;padding:5px 12px;border-radius:5px}
+.card{background:#fff;padding:15px;border-radius:10px;margin:10px;box-shadow:0 2px 5px #ccc}
+button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:16px}
+.next{background:#0b3d91;color:#fff}
+.prev{background:#ddd}
+.submit{background:#e60000;color:#fff;width:100%;margin-top:15px}
+.opt{display:block;background:#f8f9fa;padding:10px;margin:7px 0;border:1px solid #ddd;border-radius:6px;cursor:pointer}
+.opt input{margin-right:8px}
+.qnav{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.qnav button{width:38px;height:38px;padding:0;background:#eee;border-radius:50%}
+.qnav button.done{background:#4caf50;color:#fff}
+.qnav button.current{background:#0b3d91;color:#fff}
+#result{display:none;text-align:center;padding:20px}
 </style>
 </head>
 <body>
-<div class="container">
+
+<!-- ============ SCREEN 1 ============ -->
+<div id="landing">
   <div class="header">
-    <img src="Web Logo.png" alt="NIELIT Logo">
-    <h1>Course on Computer Concepts (CCC) Exam</h1>
+    <div class="logo-box">
+      <div class="logo-circle">🌐</div>
+      <div class="logo-text">
+        <div class="hindi">रा.इ.सू.प्रौ.सं</div>
+        <div class="eng">NIEL<span>IT</span></div>
+      </div>
+    </div>
+    <h1>NIELIT Examination</h1>
   </div>
 
-  <div class="input-group">
-    <label>👤 Enter Student Name</label>
-    <input type="text" id="studentName" placeholder="">
+  <div class="info-table">
+    <div class="row"><span class="label">Centre Code:</span><span class="value red">nielit1</span></div>
+    <div class="row"><span class="label">System Number:</span><span class="value red">nielit1-002</span></div>
+    <div class="row"><span class="label">Central Server Name:</span><span class="value red">Ganga</span></div>
+    <div class="row"><span class="label">Resident Server Connectivity:</span><span class="value green">Successfully Connected!!</span></div>
   </div>
 
-  <div class="instructions">
-    <h3>Instructions</h3>
-    <ul>
-      <li><b>Total Questions:</b> 3</li>
-      <li><b>Total Marks:</b> 3</li>
-      <li><b>Duration:</b> 90 minutes</li>
-      <li><b>No Negative Marking</b></li>
-    </ul>
+  <div class="proceed-wrap">
+    <button class="proceed-btn" onclick="goLogin()">Proceed</button>
   </div>
+</div>
 
-  <button class="btn" onclick="startExam()">Start Exam</button>
+<!-- ============ SCREEN 2 - LOGIN ============ -->
+<div id="login">
+  <div class="login-card">
+    <div class="login-head">Candidate Login - CCC Examination</div>
+    <div class="login-body">
+      <label>Enter Your Name</label>
+      <input type="text" id="candName" placeholder="Eg: Lalremruati">
+      <label>Select Course</label>
+      <select id="course"><option>CCC - Course on Computer Concepts</option></select>
+      <label>Roll Number / ID (Optional)</label>
+      <input type="text" placeholder="Eg: 12345">
+      <button class="start-btn" onclick="startExam()">START EXAM →</button>
+      <p style="text-align:center;margin-top:12px;font-size:13px;color:#666">Time: 90 Minutes | Questions: 100 | Pass: 50%</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 3 - EXAM ============ -->
+<div id="exam">
+  <div class="top">
+    <div><b>NIELIT CCC</b><br><small id="showName">Candidate</small></div>
+    <div id="timer">90:00</div>
+  </div>
+  <div id="quizBox">
+    <div class="card">
+      <div id="qtext" style="font-size:18px;font-weight:bold"></div>
+      <div id="opts"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:15px">
+        <button class="prev" onclick="prevQ()">← Prev</button>
+        <button class="next" onclick="nextQ()">Next →</button>
+      </div>
+    </div>
+    <div class="card"><b>Question Palette:</b><div class="qnav" id="qnav"></div><button class="submit" onclick="submitExam()">SUBMIT EXAM</button></div>
+  </div>
+  <div id="result" class="card"><h2 id="scoreText"></h2><p id="passText"></p><p id="detail"></p><button class="next" onclick="location.reload()">TRY AGAIN</button></div>
 </div>
 
 <script>
-function startExam() {
-  const name = document.getElementById("studentName").value.trim();
-  if(name === "") {
-    alert("Please write your name");
-    return;
-  }
-  localStorage.setItem("studentName", name);
-  window.location.href = "quiz.html";
+function goLogin(){
+  document.getElementById('landing').style.display='none';
+  document.getElementById('login').style.display='block';
 }
+function startExam(){
+  let n=document.getElementById('candName').value || "Candidate";
+  document.getElementById('showName').innerText=n;
+  document.getElementById('login').style.display='none';
+  document.getElementById('exam').style.display='block';
+  startTimer();
+}
+
+// --- QUESTIONS - hetah hian 100 a awm, a hmasa 10 ka dah, a bak i duh chuan sawi rawh ---
+const questions=[
+{q:"What is the full form of CCC?", o:["Course on Computer Concepts","Certificate in Computer Course","Course on Computer Certificate","Computer Course Certificate"], a:0},
+{q:"What is the full form of CPU?", o:["Central Processing Unit","Central Program Unit","Computer Processing Unit","Central Process Unit"], a:0},
+{q:"Which is the brain of computer?", o:["CPU","RAM","Monitor","Keyboard"], a:0},
+{q:"What is the full form of RAM?", o:["Random Access Memory","Read Access Memory","Rapid Access Memory","Random Active Memory"], a:0},
+{q:"What is the full form of ROM?", o:["Read Only Memory","Random Only Memory","Read Open Memory","Rapid Only Memory"], a:0},
+{q:"Which device is used for input?", o:["Keyboard","Monitor","Printer","Speaker"], a:0},
+{q:"Which device is used for output?", o:["Monitor","Mouse","Keyboard","Scanner"], a:0},
+{q:"1 KB = ?", o:["1024 Bytes","1000 Bytes","1024 MB","100 Bytes"], a:0},
+{q:"What is the extension of MS Word file?", o:[".docx",".xlsx",".pptx",".txt"], a:0},
+{q:"What is the shortcut to Copy?", o:["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+Z"], a:0},
+// ... a bak 90 ka dah belh thei - sawi la
+];
+
+let current=0, answers=new Array(questions.length).fill(null);
+let timeLeft=90*60, timerStarted=false;
+function render(){
+  let q=questions[current];
+  document.getElementById('qtext').innerText=(current+1)+". "+q.q;
+  let html="";
+  q.o.forEach((opt,i)=>{ html+=`<label class="opt"><input type="radio" name="opt" ${answers[current]==i?'checked':''} onclick="selectOpt(${i})"> ${opt}</label>`; });
+  document.getElementById('opts').innerHTML=html;
+  let nav="";
+  questions.forEach((_,i)=>{ nav+=`<button class="${answers[i]!=null?'done':''} ${i==current?'current':''}" onclick="goTo(${i})">${i+1}</button>`; });
+  document.getElementById('qnav').innerHTML=nav;
+}
+function selectOpt(i){answers[current]=i;render();}
+function nextQ(){if(current<questions.length-1){current++;render();}}
+function prevQ(){if(current>0){current--;render();}}
+function goTo(i){current=i;render();}
+function submitExam(){
+  let correct=0; answers.forEach((a,i)=>{if(a==questions[i].a) correct++;});
+  document.getElementById('quizBox').style.display='none';
+  document.getElementById('result').style.display='block';
+  document.getElementById('scoreText').innerText=`Your Score: ${correct} / ${questions.length}`;
+  document.getElementById('passText').innerText=correct>=questions.length/2?"✅ PASS":"❌ FAIL - Zir leh rawh";
+  document.getElementById('detail').innerText=`Attempted: ${answers.filter(a=>a!=null).length} | Correct: ${correct}`;
+}
+function startTimer(){
+  if(timerStarted) return; timerStarted=true;
+  setInterval(()=>{
+    timeLeft--; let m=Math.floor(timeLeft/60), s=timeLeft%60;
+    document.getElementById('timer').innerText=`${m}:${s<10?'0':''}${s}`;
+    if(timeLeft<=0){alert("Time Up!");submitExam();}
+  },1000);
+}
+render();
 </script>
 </body>
 </html>
