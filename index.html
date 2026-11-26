@@ -5,79 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NIELIT Examination</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#fff}
-
-/* ===== SCREEN 1 - SYSTEM CHECK - TAK ANG CHIAH ===== */
-#landing{width:100%;min-height:100vh;background:#fff}
-.header{
-  background: linear-gradient(to bottom, #a8d0f0, #cce6ff);
-  padding:12px 15px;
-  display:flex;align-items:center;gap:12px;
-  border-bottom:2px solid #8ab8e0;
-}
-.logo-box{display:flex;align-items:center;gap:5px}
-.logo-circle{
-  width:52px;height:52px;border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, #4aa3df, #0b3d91);
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:22px;font-weight:bold;
-  border:2px solid #fff;box-shadow:0 2px 5px rgba(0,0,0,0.2);
-  position:relative;overflow:hidden;
-}
-.logo-text{line-height:1}
+/* ===== SCREEN 1 ===== */
+#landing{min-height:100vh}
+.header{background:linear-gradient(to bottom,#a8d0f0,#cce6ff);padding:12px 15px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #8ab8e0}
+.logo-circle{width:52px;height:52px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#4aa3df,#0b3d91);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:bold;border:2px solid #fff}
 .logo-text .hindi{font-size:13px;font-weight:bold;color:#1a3a5a}
-.logo-text .eng{font-size:24px;font-weight:900;color:#0b3d91;letter-spacing:1px}
+.logo-text .eng{font-size:24px;font-weight:900;color:#0b3d91}
 .logo-text .eng span{color:#e65100}
-.header h1{
-  font-family:"Times New Roman", serif;
-  font-size:32px;font-weight:bold;color:#000;
-  letter-spacing:0.5px;text-shadow:1px 1px 0 #fff;
-}
-@media(max-width:600px){.header h1{font-size:24px}.logo-text .eng{font-size:18px}}
-
-.info-table{padding:35px 20px 10px 20px;max-width:900px;margin:0 auto}
-.row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;flex-wrap:wrap;gap:5px}
-.row .label{
-  font-family:"Times New Roman", serif;
-  font-size:22px;font-weight:bold;color:#00008B;
-}
-.row .value{
-  font-family:"Times New Roman", serif;
-  font-size:21px;font-weight:bold;
-}
-.red{color:#d94f30}
-.green{color:#2e7d32}
-@media(max-width:600px){.row .label{font-size:19px}.row .value{font-size:18px}}
-
+.header h1{font-family:"Times New Roman",serif;font-size:32px;font-weight:bold}
+@media(max-width:600px){.header h1{font-size:23px}}
+.info-table{padding:35px 20px 10px;max-width:900px;margin:0 auto}
+.row{display:flex;justify-content:space-between;padding:14px 0;flex-wrap:wrap}
+.row .label{font-family:"Times New Roman",serif;font-size:22px;font-weight:bold;color:#00008B}
+.row .value{font-family:"Times New Roman",serif;font-size:21px;font-weight:bold}
+.red{color:#d94f30}.green{color:#2e7d32}
 .proceed-wrap{max-width:900px;margin:0 auto;padding:15px 20px}
-.proceed-btn{
-  background: linear-gradient(135deg, #5ec8e8, #0b6fa8);
-  color:#fff;border:none;
-  padding:13px 28px;border-radius:25px;
-  font-size:19px;font-weight:bold;cursor:pointer;
-  box-shadow:0 5px 15px rgba(11,111,168,0.4);
-}
-.proceed-btn:active{transform:scale(0.97)}
+.proceed-btn{background:linear-gradient(135deg,#5ec8e8,#0b6fa8);color:#fff;border:none;padding:13px 28px;border-radius:25px;font-size:19px;font-weight:bold;cursor:pointer;box-shadow:0 5px 15px rgba(11,111,168,.4)}
 
-/* ===== SCREEN 2 - CANDIDATE LOGIN ===== */
-#login{display:none;max-width:500px;margin:30px auto;padding:20px}
-.login-card{background:#fff;border:2px solid #0b3d91;border-radius:10px;overflow:hidden}
-.login-head{background:#0b3d91;color:#fff;padding:15px;text-align:center;font-size:20px;font-weight:bold}
-.login-body{padding:20px}
-.login-body label{display:block;margin:12px 0 5px;font-weight:bold;color:#333}
-.login-body input, .login-body select{width:100%;padding:12px;border:1px solid #ccc;border-radius:6px;font-size:16px}
-.start-btn{background:#0b3d91;color:#fff;width:100%;padding:14px;border:none;border-radius:6px;font-size:18px;font-weight:bold;margin-top:20px;cursor:pointer}
+/* ===== SCREEN 2 - INSTRUCTIONS - TAK ANG ===== */
+#instructions{display:none;max-width:1000px;margin:0 auto;padding:10px 15px 30px}
+.inst-head{text-align:center;padding:15px 0}
+.inst-head h2{font-size:22px;color:#000}
+.inst-head p{font-size:15px;color:#333;margin-top:4px}
+.two-col{display:flex;gap:20px}
+.two-col>div{flex:1;font-size:14px;line-height:1.6;text-align:justify}
+.two-col h3{font-size:15px;margin:12px 0 5px;color:#000}
+.two-col .red-text{color:#d94f30;font-weight:bold}
+@media(max-width:700px){.two-col{flex-direction:column}}
+.bottom-box{margin-top:20px;text-align:center}
+.sys-no{font-weight:bold;color:#d94f30;font-size:18px}
+.roll-row{margin:12px 0;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;font-weight:bold;font-size:16px}
+.roll-row input{padding:8px 10px;font-size:16px;border:1px solid #999;width:180px}
+.check-row{text-align:left;margin:15px 0;font-size:14px;line-height:1.5}
+.check-row input{width:18px;height:18px;vertical-align:middle;margin-right:6px;accent-color:#0b3d91}
+.start-wrap{text-align:right;margin-top:10px}
+.start-btn{background:#1a5fb4;color:#fff;border:none;padding:12px 20px;font-size:16px;font-weight:bold;cursor:pointer;border-radius:3px}
+.start-btn:disabled{background:#999;cursor:not-allowed}
+.ganga{text-align:center;color:#d94f30;font-weight:bold;margin-top:18px}
 
 /* ===== SCREEN 3 - EXAM ===== */
 #exam{display:none}
-.top{background:#0b3d91;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.top{background:#0b3d91;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
 #timer{font-size:22px;font-weight:bold;background:#ffcc00;color:#000;padding:5px 12px;border-radius:5px}
 .card{background:#fff;padding:15px;border-radius:10px;margin:10px;box-shadow:0 2px 5px #ccc}
 button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:16px}
-.next{background:#0b3d91;color:#fff}
-.prev{background:#ddd}
-.submit{background:#e60000;color:#fff;width:100%;margin-top:15px}
+.next{background:#0b3d91;color:#fff}.prev{background:#ddd}.submit{background:#e60000;color:#fff;width:100%;margin-top:15px}
 .opt{display:block;background:#f8f9fa;padding:10px;margin:7px 0;border:1px solid #ddd;border-radius:6px;cursor:pointer}
 .opt input{margin-right:8px}
 .qnav{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
@@ -89,82 +63,108 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
 </head>
 <body>
 
-<!-- ============ SCREEN 1 ============ -->
+<!-- SCREEN 1 -->
 <div id="landing">
   <div class="header">
-    <div class="logo-box">
+    <div style="display:flex;gap:5px;align-items:center">
       <div class="logo-circle">🌐</div>
-      <div class="logo-text">
-        <div class="hindi">रा.इ.सू.प्रौ.सं</div>
-        <div class="eng">NIEL<span>IT</span></div>
-      </div>
+      <div class="logo-text"><div class="hindi">रा.इ.सू.प्रौ.सं</div><div class="eng">NIEL<span>IT</span></div></div>
     </div>
     <h1>NIELIT Examination</h1>
   </div>
-
   <div class="info-table">
     <div class="row"><span class="label">Centre Code:</span><span class="value red">nielit1</span></div>
     <div class="row"><span class="label">System Number:</span><span class="value red">nielit1-002</span></div>
     <div class="row"><span class="label">Central Server Name:</span><span class="value red">Ganga</span></div>
     <div class="row"><span class="label">Resident Server Connectivity:</span><span class="value green">Successfully Connected!!</span></div>
   </div>
-
-  <div class="proceed-wrap">
-    <button class="proceed-btn" onclick="goLogin()">Proceed</button>
-  </div>
+  <div class="proceed-wrap"><button class="proceed-btn" onclick="goInstructions()">Proceed</button></div>
 </div>
 
-<!-- ============ SCREEN 2 - LOGIN ============ -->
-<div id="login">
-  <div class="login-card">
-    <div class="login-head">Candidate Login - CCC Examination</div>
-    <div class="login-body">
-      <label>Enter Your Name</label>
-      <input type="text" id="candName" placeholder="Eg: Lalremruati">
-      <label>Select Course</label>
-      <select id="course"><option>CCC - Course on Computer Concepts</option></select>
-      <label>Roll Number / ID (Optional)</label>
-      <input type="text" placeholder="Eg: 12345">
-      <button class="start-btn" onclick="startExam()">START EXAM →</button>
-      <p style="text-align:center;margin-top:12px;font-size:13px;color:#666">Time: 90 Minutes | Questions: 100 | Pass: 50%</p>
+<!-- SCREEN 2 - INSTRUCTIONS -->
+<div id="instructions">
+  <div class="inst-head">
+    <h2>General Instructions / सामान्य निर्देश</h2>
+    <p>Please read the instructions carefully before starting the examination</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>9) उत्तर चुनना / Answering:</h3>
+      <p>a) किसी प्रश्न का उत्तर देने के लिए, विकल्प बटन पर क्लिक करें।</p>
+      <p>b) अपने चुने हुए उत्तर को बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें।</p>
+      <p>c) अपना चुने हुए उत्तर को अचयनित या रीसेट करने के लिए, <b>"Reset Answer"</b> बटन पर क्लिक करें।</p>
+      <p>d) अपना चयनित उत्तर बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें और अपना उत्तर सहेजें।</p>
+      <p class="red-text">सावधानी: ध्यान दें कि वर्तमान प्रश्न के लिए आपका उत्तर सहेजा नहीं जाएगा, यदि आप किसी अन्य प्रश्न पर सीधे (उत्तर की पुष्टि किए बिना) उसकी प्रश्न संख्या पर क्लिक करके नेविगेट करते हैं।</p>
+      <h3>10) परीक्षा समाप्त / सब्मिट करें:</h3>
+      <p>a) परीक्षा खत्म करने के लिए पहले <b>"Finish Exam"</b> बटन पर क्लिक करें और फिर <b>"Confirm"</b> बटन पर क्लिक करें।</p>
+      <p>b) घड़ी सर्वर पर सेट हो जाएगी। स्क्रीन के ऊपर दाईं ओर काउंटडाउन टाइमर उपलब्ध शेष समय को प्रदर्शित करेगा।</p>
+      <h3>11) उम्मीदवार को यह सुनिश्चित करना चाहिए कि वह परीक्षा केंद्र की उपस्थिति पंजिका पर उसी तरह से अपने हस्ताक्षर करें जैसे उन्होंने आवेदन पत्र की प्रति अग्रेषित करते समय किया था।</h3>
+      <h3>12) यदि प्रश्नों के हिंदी और अंग्रेजी संस्करण के बीच कोई विसंगति है, तो प्रश्न और उत्तर का अंग्रेजी संस्करण मान्य होगा।</h3>
+      <h3>13) परीक्षा के दौरान अथवा परीक्षा समाप्त होते समय किसी भी प्रकार की प्रणाली (सिस्टम) की विफलता अथवा तकनीकी समस्या के मामले में, तुरंत परीक्षा अधीक्षक (ई.एस.) को सूचित करें।</h3>
+    </div>
+    <div>
+      <h3>9) Answering:</h3>
+      <p>a) To answer a question, click on the option button.</p>
+      <p>b) To change your chosen answer, click on the button of another option.</p>
+      <p>c) To deselect or reset your chosen answer, click on the <b>"Reset Answer"</b> button.</p>
+      <p>d) To change your chosen answer, click on the button of another option and submit your answer.</p>
+      <p class="red-text">Caution: Note that your answer for the current question will not be saved, if you navigate to another question directly (without submitting the answer) by clicking on its question number.</p>
+      <h3>10) Finish/Submit the examination:</h3>
+      <p>a) To finish the exam, first click on the <b>"Finish Exam"</b> button and then <b>"Confirm"</b> button. This is mandatory process to finish the exam. Never try to finish the exam by clicking <b>"Close Exam Panel"</b> button.</p>
+      <p>b) The clock will be set at the server. The countdown timer on the screen will display the remaining time available. When the timer reaches zero, the examination will end by itself. In this case, you will not be required to end or submit your examination.</p>
+      <h3>11) Candidate must ensure that s/he appends her/his signature on the attendance sheet at the examination centre in the same manner as signed by them while forwarding the copy of application form to NIELIT.</h3>
+      <h3>12) If there is any inconsistency between the Hindi and English versions of questions, the English version of question & answer will prevail.</h3>
+      <h3>13) In case of any system failure/technical error while running/finishing the exam, please inform the ES immediately.</h3>
     </div>
   </div>
+
+  <div class="bottom-box">
+    <div class="sys-no">System Number : nielit1-002</div>
+    <div class="roll-row">
+      <span>RollNo/ Login Id:</span>
+      <input type="text" id="rollNo" placeholder="HQ29" value="">
+    </div>
+    <div class="check-row">
+      <label><input type="checkbox" id="agreeBox" onchange="checkAgree()"> I have read and understood all the instructions thoroughly and I shall abide by the instructions.</label>
+    </div>
+    <div class="start-wrap">
+      <button class="start-btn" id="startBtn" disabled onclick="startExam()">परीक्षा प्रारम्भ करें / Start the exam</button>
+    </div>
+    <div class="ganga">Ganga</div>
+  </div>
 </div>
 
-<!-- ============ SCREEN 3 - EXAM ============ -->
+<!-- SCREEN 3 - EXAM -->
 <div id="exam">
-  <div class="top">
-    <div><b>NIELIT CCC</b><br><small id="showName">Candidate</small></div>
-    <div id="timer">90:00</div>
-  </div>
+  <div class="top"><div><b>NIELIT CCC</b><br><small id="showName">Candidate</small></div><div id="timer">90:00</div></div>
   <div id="quizBox">
-    <div class="card">
-      <div id="qtext" style="font-size:18px;font-weight:bold"></div>
-      <div id="opts"></div>
-      <div style="display:flex;justify-content:space-between;margin-top:15px">
-        <button class="prev" onclick="prevQ()">← Prev</button>
-        <button class="next" onclick="nextQ()">Next →</button>
-      </div>
-    </div>
-    <div class="card"><b>Question Palette:</b><div class="qnav" id="qnav"></div><button class="submit" onclick="submitExam()">SUBMIT EXAM</button></div>
+    <div class="card"><div id="qtext" style="font-size:18px;font-weight:bold"></div><div id="opts"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:15px"><button class="prev" onclick="prevQ()">← Prev</button><button class="next" onclick="nextQ()">Next →</button><button style="background:#ff9800;color:#fff" onclick="resetAns()">Reset Answer</button></div></div>
+    <div class="card"><b>Question Palette:</b><div class="qnav" id="qnav"></div><button class="submit" onclick="submitExam()">FINISH EXAM</button></div>
   </div>
   <div id="result" class="card"><h2 id="scoreText"></h2><p id="passText"></p><p id="detail"></p><button class="next" onclick="location.reload()">TRY AGAIN</button></div>
 </div>
 
 <script>
-function goLogin(){
+function goInstructions(){
   document.getElementById('landing').style.display='none';
-  document.getElementById('login').style.display='block';
+  document.getElementById('instructions').style.display='block';
+  window.scrollTo(0,0);
+}
+function checkAgree(){
+  let c=document.getElementById('agreeBox').checked;
+  document.getElementById('startBtn').disabled=!c;
 }
 function startExam(){
-  let n=document.getElementById('candName').value || "Candidate";
-  document.getElementById('showName').innerText=n;
-  document.getElementById('login').style.display='none';
+  let roll=document.getElementById('rollNo').value.trim();
+  if(!roll){ alert("RollNo / Login Id dah phawt rawh!"); return; }
+  if(!document.getElementById('agreeBox').checked){ alert("Checkbox tick phawt rawh!"); return; }
+  document.getElementById('showName').innerText="Roll No: "+roll;
+  document.getElementById('instructions').style.display='none';
   document.getElementById('exam').style.display='block';
   startTimer();
 }
-
-// --- QUESTIONS - hetah hian 100 a awm, a hmasa 10 ka dah, a bak i duh chuan sawi rawh ---
 const questions=[
 {q:"What is the full form of CCC?", o:["Course on Computer Concepts","Certificate in Computer Course","Course on Computer Certificate","Computer Course Certificate"], a:0},
 {q:"What is the full form of CPU?", o:["Central Processing Unit","Central Program Unit","Computer Processing Unit","Central Process Unit"], a:0},
@@ -176,9 +176,7 @@ const questions=[
 {q:"1 KB = ?", o:["1024 Bytes","1000 Bytes","1024 MB","100 Bytes"], a:0},
 {q:"What is the extension of MS Word file?", o:[".docx",".xlsx",".pptx",".txt"], a:0},
 {q:"What is the shortcut to Copy?", o:["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+Z"], a:0},
-// ... a bak 90 ka dah belh thei - sawi la
 ];
-
 let current=0, answers=new Array(questions.length).fill(null);
 let timeLeft=90*60, timerStarted=false;
 function render(){
@@ -192,10 +190,12 @@ function render(){
   document.getElementById('qnav').innerHTML=nav;
 }
 function selectOpt(i){answers[current]=i;render();}
+function resetAns(){answers[current]=null;render();}
 function nextQ(){if(current<questions.length-1){current++;render();}}
 function prevQ(){if(current>0){current--;render();}}
 function goTo(i){current=i;render();}
 function submitExam(){
+  if(!confirm("Finish Exam i duh tak tak em?")) return;
   let correct=0; answers.forEach((a,i)=>{if(a==questions[i].a) correct++;});
   document.getElementById('quizBox').style.display='none';
   document.getElementById('result').style.display='block';
@@ -205,11 +205,7 @@ function submitExam(){
 }
 function startTimer(){
   if(timerStarted) return; timerStarted=true;
-  setInterval(()=>{
-    timeLeft--; let m=Math.floor(timeLeft/60), s=timeLeft%60;
-    document.getElementById('timer').innerText=`${m}:${s<10?'0':''}${s}`;
-    if(timeLeft<=0){alert("Time Up!");submitExam();}
-  },1000);
+  setInterval(()=>{ timeLeft--; let m=Math.floor(timeLeft/60), s=timeLeft%60; document.getElementById('timer').innerText=`${m}:${s<10?'0':''}${s}`; if(timeLeft<=0){alert("Time Up!");submitExam();} },1000);
 }
 render();
 </script>
