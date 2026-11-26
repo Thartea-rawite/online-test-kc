@@ -63,8 +63,6 @@ body{background:#fff}
 .exam-info>div{flex:1;min-width:140px;padding:8px 12px;border-right:1px solid #999;font-size:14px}
 .exam-info b{color:#1a2a6a}
 .exam-info span{font-weight:bold}
-.finish-col{width:190px;display:flex;flex-direction:column}
-.finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
 #waitBar{display:none}
 .wait-top{display:flex;border-left:2px solid #333;border-right:2px solid #333}
 .wait-top>div{padding:3px 12px;font-size:13px;font-weight:bold;border-right:1px solid #999}
@@ -172,7 +170,7 @@ body{background:#fff}
   </div>
 </div>
 
-<!-- 6 EXAM -->
+<!-- 6 EXAM - FINISH EXAM BUTTON PAIH TAWH -->
 <div id="exam">
   <div class="exam-header">
     <div class="exam-logo"><div class="logo-circle">🌐</div><div><div style="font-size:12px;font-weight:bold">रा.इ.सू.प्रौ.सं</div><div style="font-size:18px;font-weight:900;color:#0b3d91">NIEL<span style="color:#e65100">IT</span></div><small>ONLINE EXAMINATION</small></div></div>
@@ -182,7 +180,6 @@ body{background:#fff}
       <div><b>Name:</b> <span id="examName">Student29</span></div>
       <div><b>Language</b><br><span>English</span></div>
     </div>
-    <div class="finish-col"><button class="finish-btn" onclick="finishExam()">Finish Exam</button><div style="flex:1"></div></div>
   </div>
   <div id="waitBar" class="wait-top">
     <div class="qn"></div>
@@ -335,12 +332,12 @@ function submitAnswer(){
   submitted[current]=true;
   clearInterval(lockTimer);
   document.getElementById('waitBar').style.display='none';
-  if(current<99){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
+  if(current<99){current++; renderExam();} else{ finishExam(true); }
 }
 function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
 function goToQ(i){current=i; renderExam();}
-function finishExam(){
-  if(!confirm("Finish Exam i duh tak tak em?")) return;
+function finishExam(auto){
+  if(!auto && !confirm("Finish Exam i duh tak tak em?")) return;
   let correct=0; submitted.forEach((s,i)=>{ if(s && answers[i]==questions[i].a) correct++; });
   document.querySelector('.exam-body').style.display='none';
   document.querySelector('.exam-footer').style.display='none';
@@ -352,7 +349,7 @@ function finishExam(){
 }
 function startTimer(){
   if(timerStarted) return; timerStarted=true;
-  setInterval(()=>{ timeLeft--; let h=Math.floor(timeLeft/3600), m=Math.floor((timeLeft%3600)/60), s=timeLeft%60; document.getElementById('remainTime').innerText=`${h} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`; if(timeLeft<=0){alert("Time Up!"); finishExam();} },1000);
+  setInterval(()=>{ timeLeft--; let h=Math.floor(timeLeft/3600), m=Math.floor((timeLeft%3600)/60), s=timeLeft%60; document.getElementById('remainTime').innerText=`${h} : ${String(m).padStart(2,'0')} : ${String(s).padStart(2,'0')}`; if(timeLeft<=0){alert("Time Up!"); finishExam(true);} },1000);
 }
 </script>
 </body>
