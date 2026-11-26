@@ -86,7 +86,6 @@ body{background:#fff}
 .qgrid button.current{background:#ffcc00;color:#000;border:2px solid #000}
 .review-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;width:100%;font-size:13px;cursor:pointer;margin-top:5px}
 .exam-footer{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-top:1px solid #999;background:#fff;position:sticky;bottom:0}
-/* A B C D KAR HLA TAWK - TI HLAT TAWH */
 .exam-footer .opts{display:flex;gap:65px;padding-left:35px}
 .exam-footer label{font-size:19px;font-weight:bold;cursor:pointer;color:#2a6fd4;display:flex;align-items:center}
 .exam-footer label input{appearance:none;-webkit-appearance:none;width:28px;height:28px;border-radius:50%;border:2.5px solid #2a6fd4;background:#fff;vertical-align:middle;margin-right:12px;cursor:pointer;position:relative;flex-shrink:0}
@@ -95,6 +94,9 @@ body{background:#fff}
 .footer-btns{display:flex;gap:12px;align-items:center}
 .pill-btn{border:2px solid #333;background:#fff;padding:8px 16px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;box-shadow:0 2px 5px rgba(0,0,0,.2)}
 .pill-btn.submit{color:#2e7d32}.pill-btn.reset{color:#e60000}
+/* SUBMIT LOCK - 30 SECONDS */
+.pill-btn.submit:disabled{background:#ddd;color:#999;border-color:#aaa;cursor:not-allowed;box-shadow:none}
+.q-timer{font-size:13px;font-weight:bold;color:#e60000;text-align:center;margin-top:8px}
 .font-btn{border:1px solid #999;background:#fff;padding:4px 8px;font-weight:bold;cursor:pointer}
 #result{display:none;text-align:center;padding:30px}
 @media(max-width:800px){.exam-right{width:160px}.exam-info>div{min-width:110px}.qgrid{grid-template-columns:repeat(5,1fr)}.exam-footer .opts{gap:30px;padding-left:10px}}
@@ -201,10 +203,11 @@ body{background:#fff}
     <div class="footer-btns">
       <button class="font-btn" onclick="changeFont(1)">A++</button>
       <button class="font-btn" onclick="changeFont(-1)">A--</button>
-      <button class="pill-btn submit" onclick="submitAnswer()">Submit Answer</button>
+      <button class="pill-btn submit" id="submitBtn" onclick="submitAnswer()">Submit Answer</button>
       <button class="pill-btn reset" onclick="resetAnswer()">Reset Answer</button>
     </div>
   </div>
+  <div style="text-align:center;padding-bottom:8px"><span class="q-timer" id="qTimer"></span></div>
   <div id="result" style="display:none;text-align:center;padding:30px">
     <h2 id="scoreText"></h2><p id="passText"></p><p id="detailText"></p><br>
     <button class="blue-btn" onclick="location.reload()">TRY AGAIN</button>
@@ -275,6 +278,33 @@ let questions=[
 for(let i=16;i<=50;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
 let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
 let timeLeft=60*60-11, timerStarted=false;
+
+// 30 SECONDS LOCK - QUESTION TINAH
+let lockTimer=null, lockLeft=30;
+function startQuestionLock(){
+  clearInterval(lockTimer);
+  let btn=document.getElementById('submitBtn');
+  let timerEl=document.getElementById('qTimer');
+  // A submit tawh question ah chuan lock ngai lo
+  if(submitted[current]){
+    btn.disabled=false; btn.innerText="Submit Answer"; timerEl.innerText=""; return;
+  }
+  lockLeft=30;
+  btn.disabled=true; btn.innerText="Wait 30s...";
+  timerEl.innerText="Please wait 30 seconds before submitting...";
+  lockTimer=setInterval(()=>{
+    lockLeft--;
+    if(lockLeft<=0){
+      clearInterval(lockTimer);
+      btn.disabled=false; btn.innerText="Submit Answer";
+      timerEl.innerText="You can now submit!";
+      setTimeout(()=>{ if(document.getElementById('qTimer')) document.getElementById('qTimer').innerText=""; },2000);
+    } else {
+      btn.innerText="Wait "+lockLeft+"s...";
+      timerEl.innerText="Please wait "+lockLeft+" seconds before submitting...";
+    }
+  },1000);
+}
 function renderExam(){
   let qq=questions[current];
   document.getElementById('qnNo').innerText=current+1;
@@ -289,11 +319,15 @@ function renderExam(){
   let att=submitted.filter(x=>x).length;
   document.getElementById('attemptCount').innerText=att;
   document.getElementById('notAttemptCount').innerText=50-att;
+  startQuestionLock();
 }
 function selectOpt(i){answers[current]=i;}
 function submitAnswer(){
+  let btn=document.getElementById('submitBtn');
+  if(btn.disabled){alert("30 seconds la nghah a ngai!"); return;}
   if(answers[current]==null){alert("Option pakhat thlang phawt rawh!");return;}
   submitted[current]=true;
+  clearInterval(lockTimer);
   if(current<49){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
 }
 function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
