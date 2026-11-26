@@ -48,7 +48,7 @@ body{background:#fff}
 .login-btn-wrap{margin-top:45px;padding-left:95px}
 .login-btn{background:linear-gradient(135deg,#2ea5e0,#0b6fa8);color:#fff;border:none;padding:10px 22px;border-radius:18px;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 4px 10px rgba(11,111,168,.4)}
 
-/* SCREEN 4 - START EXAM - TAK ANG CHIAH */
+/* SCREEN 4 - START EXAM - I THLALAK ANG CHIAH */
 #startExamScreen{display:none;min-height:100vh;background:#fff}
 .start-top{
   background:linear-gradient(to bottom,#8cc8f0,#d8f0ff);
@@ -60,18 +60,17 @@ body{background:#fff}
   text-shadow:1px 1px 0 #fff;
 }
 @media(max-width:600px){.start-top h2{font-size:28px}}
-.start-details{max-width:700px;margin:35px auto;padding:0 20px}
-.detail-row{display:flex;align-items:center;gap:15px;margin:16px 0;flex-wrap:wrap}
-.detail-row .lbl{width:180px;font-family:"Times New Roman",serif;font-size:22px;font-weight:bold;color:#00008B}
-.detail-row .val{font-family:"Times New Roman",serif;font-size:20px;font-weight:bold;color:#a03a24}
-.key-row{display:flex;align-items:center;gap:20px;margin-top:35px;flex-wrap:wrap}
-.key-row input{border:none;border-bottom:2px solid #777;padding:8px 4px;font-size:18px;width:260px;outline:none}
-.key-row input::placeholder{color:#444}
-.submit-key{
-  background:linear-gradient(135deg,#4aa8e8,#0b6fa8);color:#fff;border:none;
-  padding:10px 24px;border-radius:20px;font-size:16px;font-weight:bold;cursor:pointer;
-  box-shadow:0 4px 10px rgba(11,111,168,.4);
+.start-details{max-width:800px;margin:35px auto;padding:0 25px}
+.detail-row{display:flex;align-items:center;gap:15px;margin:17px 0;flex-wrap:wrap}
+.detail-row .lbl{width:280px;font-family:"Times New Roman",serif;font-size:23px;font-weight:bold;color:#00008B}
+.detail-row .val{font-family:"Times New Roman",serif;font-size:21px;font-weight:bold;color:#c05a3e}
+.start-exam-btn-wrap{margin-top:30px;padding-left:90px}
+.start-exam-btn{
+  background:linear-gradient(135deg,#5ec8e8,#0b5aa8);color:#fff;border:none;
+  padding:12px 28px;border-radius:25px;font-size:17px;font-weight:500;cursor:pointer;
+  box-shadow:0 6px 14px rgba(11,90,168,.45);
 }
+.start-exam-btn:active{transform:scale(.97)}
 
 /* SCREEN 5 EXAM */
 #exam{display:none}
@@ -125,25 +124,23 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
   </div>
 </div>
 
-<!-- SCREEN 4 - START EXAM -->
+<!-- SCREEN 4 - START EXAM - THAR -->
 <div id="startExamScreen">
   <div class="start-top">
     <div style="display:flex;gap:5px;align-items:center"><div class="logo-circle" style="width:48px;height:48px;font-size:18px">🌐</div><div class="logo-text"><div class="hindi">रा.इ.सू.प्रौ.सं</div><div class="eng" style="font-size:20px">NIEL<span>IT</span></div></div></div>
     <h2>Start Exam</h2>
   </div>
   <div class="start-details">
-    <div class="detail-row"><span class="lbl">System Time:</span><span class="val" id="sysTime">15:54:00</span></div>
-    <div class="detail-row"><span class="lbl">Login Id:</span><span class="val" id="finalLoginId">HQ1224228644</span></div>
-    <div class="detail-row"><span class="lbl">Student Name:</span><span class="val" id="finalStudentName">Student1224228644</span></div>
-    <div class="detail-row"><span class="lbl">Course:</span><span class="val">Online_Demo1</span></div>
-    <div class="detail-row"><span class="lbl">Paper Name:</span><span class="val">Online Demo Exam</span></div>
-    <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">122</span></div>
+    <div class="detail-row"><span class="lbl">System Time:</span><span class="val" id="sysTime">11:08:33</span></div>
+    <div class="detail-row"><span class="lbl">Login Id:</span><span class="val" id="finalLoginId">HQ29</span></div>
+    <div class="detail-row"><span class="lbl">Student Name:</span><span class="val" id="finalStudentName">Student29</span></div>
+    <div class="detail-row"><span class="lbl">Course:</span><span class="val">Online_Demo</span></div>
+    <div class="detail-row"><span class="lbl">Paper Name:</span><span class="val">Online_Demo</span></div>
+    <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">100</span></div>
     <div class="detail-row"><span class="lbl">Total Duration:</span><span class="val">60 Minutes</span></div>
-    <div class="key-row">
-      <input type="text" id="loginKey" placeholder="Enter Login Key !">
-      <button class="submit-key" onclick="submitKey()">Submit</button>
+    <div class="start-exam-btn-wrap">
+      <button class="start-exam-btn" onclick="goToExam()">Start Exam</button>
     </div>
-    <p style="margin-top:20px;font-size:13px;color:#666"></p>
   </div>
 </div>
 
@@ -175,9 +172,7 @@ function goCandidateLogin(){
 function doLogin(){
   let pw=document.getElementById('passwordInput').value.trim();
   if(!pw){alert("Please Enter Password !");return;}
-  // Start Exam screen ah data dah lut
   document.getElementById('finalLoginId').innerText=savedRoll;
-  // Student Name: Student + number - eg HQ1224228644 -> Student1224228644
   let num=savedRoll.replace(/[^0-9]/g,'');
   document.getElementById('finalStudentName').innerText="Student"+num;
   document.getElementById('candidateLogin').style.display='none';
@@ -191,9 +186,7 @@ function updateSysTime(){
   document.getElementById('sysTime').innerText=h+":"+m+":"+s;
 }
 setInterval(updateSysTime,1000);
-function submitKey(){
-  let k=document.getElementById('loginKey').value.trim();
-  if(!k){alert("Enter Login Key !");return;}
+function goToExam(){
   document.getElementById('showName').innerText="Login Id: "+savedRoll;
   document.getElementById('startExamScreen').style.display='none';
   document.getElementById('exam').style.display='block';
