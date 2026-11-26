@@ -65,7 +65,6 @@ body{background:#fff}
 .exam-info span{font-weight:bold}
 .finish-col{width:190px;display:flex;flex-direction:column}
 .finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
-/* TOTAL TIME CHUNG CHIAH - HAWR AWP TE DEUH, A SEN IN */
 #waitBar{display:none}
 .wait-top{display:flex;border-left:2px solid #333;border-right:2px solid #333}
 .wait-top>div{padding:3px 12px;font-size:13px;font-weight:bold;border-right:1px solid #999}
@@ -80,13 +79,13 @@ body{background:#fff}
 .exam-left{flex:1;padding:18px 22px;font-size:15px;line-height:1.7;overflow-y:auto}
 .exam-left p{margin-bottom:12px;text-align:justify}
 .exam-left .q-opt{margin:6px 0;font-size:15px}
-.exam-right{width:210px;border-left:2px solid #333;background:#cfe6ff;display:flex;flex-direction:column}
+.exam-right{width:230px;border-left:2px solid #333;background:#cfe6ff;display:flex;flex-direction:column}
 .status-box{padding:10px;background:#fff;border-bottom:2px solid #333}
 .status-box h3{text-align:center;font-size:15px;margin-bottom:8px}
 .status-row{display:flex;justify-content:space-between;font-size:13px;font-weight:bold;padding:4px 0}
 .dot{width:22px;height:22px;border-radius:50%;display:inline-block;text-align:center;line-height:22px;color:#fff;font-size:12px}
 .dot.green{background:#2e9e4a}.dot.red{background:#e60000}
-.choose-box{padding:10px;background:#cfe6ff;flex:1}
+.choose-box{padding:10px;background:#cfe6ff;flex:1;overflow-y:auto;max-height:520px}
 .choose-box h3{text-align:center;font-size:15px;margin-bottom:10px}
 .qgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
 .qgrid button{padding:7px 0;font-size:12px;font-weight:bold;border:1px solid #999;cursor:pointer;background:#e60000;color:#fff}
@@ -105,7 +104,7 @@ body{background:#fff}
 .pill-btn.submit:disabled{background:#ddd;color:#999;border-color:#aaa;cursor:not-allowed;box-shadow:none}
 .font-btn{border:1px solid #999;background:#fff;padding:4px 8px;font-weight:bold;cursor:pointer}
 #result{display:none;text-align:center;padding:30px}
-@media(max-width:800px){.exam-right{width:160px}.exam-info>div{min-width:110px}.qgrid{grid-template-columns:repeat(5,1fr)}.exam-footer .opts{gap:30px;padding-left:10px}}
+@media(max-width:800px){.exam-right{width:180px}.exam-info>div{min-width:110px}.qgrid{grid-template-columns:repeat(5,1fr)}.exam-footer .opts{gap:30px;padding-left:10px}}
 </style>
 </head>
 <body>
@@ -152,7 +151,7 @@ body{background:#fff}
     <div class="detail-row"><span class="lbl">Student Name:</span><span class="val finalStudent">Student1224228644</span></div>
     <div class="detail-row"><span class="lbl">Course:</span><span class="val">Online_Demo1</span></div>
     <div class="detail-row"><span class="lbl">Paper Name:</span><span class="val">Online Demo Exam</span></div>
-    <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">122</span></div>
+    <div class="detail-row"><span class="lbl">Maximum Marks:</span><span class="val">100</span></div>
     <div class="detail-row"><span class="lbl">Total Duration:</span><span class="val">60 Minutes</span></div>
     <div class="key-row"><input type="text" id="loginKey" placeholder="Enter Login Key !"><button class="blue-btn" style="padding:10px 22px" onclick="goStartExam2()">Submit</button></div>
   </div>
@@ -185,7 +184,6 @@ body{background:#fff}
     </div>
     <div class="finish-col"><button class="finish-btn" onclick="finishExam()">Finish Exam</button><div style="flex:1"></div></div>
   </div>
-  <!-- TOTAL TIME CHUNG CHIAH - HEI HI -->
   <div id="waitBar" class="wait-top">
     <div class="qn"></div>
     <div></div>
@@ -206,7 +204,7 @@ body{background:#fff}
       <div class="status-box">
         <h3>Question Status</h3>
         <div class="status-row"><span>Attempted</span><span><span class="dot green">●</span> <span id="attemptCount">0</span></span></div>
-        <div class="status-row"><span>Not Attempted</span><span><span class="dot red">■</span> <span id="notAttemptCount">50</span></span></div>
+        <div class="status-row"><span>Not Attempted</span><span><span class="dot red">■</span> <span id="notAttemptCount">100</span></span></div>
       </div>
       <div class="choose-box"><h3>Choose Question</h3><div class="qgrid" id="qgrid"></div></div>
       <button class="review-btn" onclick="alert('Review Instruction')">Review Instruction</button>
@@ -288,8 +286,8 @@ let questions=[
 {q:"Which contain 'Mail Merge'?", o:["Microsoft Word","Microsoft Excel","Microsoft Powerpoint","Microsoft Access"], a:0},
 {q:"What is the full form of PDF?", o:["Personal Document Format","Personal Document File","Portable Document Format","Portable Document File"], a:2},
 ];
-for(let i=16;i<=50;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
-let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
+for(let i=16;i<=100;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
+let current=0, answers=new Array(100).fill(null), submitted=new Array(100).fill(false);
 let timeLeft=60*60-11, timerStarted=false;
 let lockTimer=null, lockLeft=30;
 function startQuestionLock(){
@@ -322,11 +320,11 @@ function renderExam(){
   qq.o.forEach((opt,i)=>{ bottom+=`<label><input type="radio" name="bottomOpt" ${answers[current]==i?'checked':''} onchange="selectOpt(${i})"> ${String.fromCharCode(65+i)}</label>`; });
   document.getElementById('bottomOpts').innerHTML=bottom;
   let grid="";
-  for(let i=0;i<50;i++){ let cls=submitted[i]?"attempted":""; if(i==current) cls+=" current"; grid+=`<button class="${cls}" onclick="goToQ(${i})">${i+1}</button>`; }
+  for(let i=0;i<100;i++){ let cls=submitted[i]?"attempted":""; if(i==current) cls+=" current"; grid+=`<button class="${cls}" onclick="goToQ(${i})">${i+1}</button>`; }
   document.getElementById('qgrid').innerHTML=grid;
   let att=submitted.filter(x=>x).length;
   document.getElementById('attemptCount').innerText=att;
-  document.getElementById('notAttemptCount').innerText=50-att;
+  document.getElementById('notAttemptCount').innerText=100-att;
   startQuestionLock();
 }
 function selectOpt(i){answers[current]=i;}
@@ -337,7 +335,7 @@ function submitAnswer(){
   submitted[current]=true;
   clearInterval(lockTimer);
   document.getElementById('waitBar').style.display='none';
-  if(current<49){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
+  if(current<99){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
 }
 function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
 function goToQ(i){current=i; renderExam();}
@@ -348,8 +346,8 @@ function finishExam(){
   document.querySelector('.exam-footer').style.display='none';
   document.getElementById('waitBar').style.display='none';
   document.getElementById('result').style.display='block';
-  document.getElementById('scoreText').innerText=`Your Score: ${correct} / 50`;
-  document.getElementById('passText').innerText=correct>=25?"✅ PASS":"❌ FAIL";
+  document.getElementById('scoreText').innerText=`Your Score: ${correct} / 100`;
+  document.getElementById('passText').innerText=correct>=50?"✅ PASS":"❌ FAIL";
   document.getElementById('detailText').innerText=`Attempted: ${submitted.filter(x=>x).length} | Correct: ${correct}`;
 }
 function startTimer(){
