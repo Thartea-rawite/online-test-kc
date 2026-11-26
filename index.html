@@ -65,9 +65,14 @@ body{background:#fff}
 .exam-info span{font-weight:bold}
 .finish-col{width:190px;display:flex;flex-direction:column}
 .finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
-/* TOTAL TIME CHUNG AH - 30 SECONDS A SEN IN */
-#waitBar{display:none;text-align:center;background:#fff0f0;border-left:2px solid #333;border-right:2px solid #333;padding:6px 0;font-size:17px;font-weight:900;color:#e60000}
-#waitBar span{font-size:20px}
+/* TOTAL TIME CHUNG CHIAH - HAWR AWP TE DEUH, A SEN IN */
+#waitBar{display:none}
+.wait-top{display:flex;border-left:2px solid #333;border-right:2px solid #333}
+.wait-top>div{padding:3px 12px;font-size:13px;font-weight:bold;border-right:1px solid #999}
+.wait-top .qn{width:110px}
+.wait-top .remain{flex:2;text-align:center}
+.wait-top .mark{flex:1;text-align:right}
+.wait-text{color:#e60000;font-size:13px;font-weight:bold;text-align:center;white-space:nowrap}
 .exam-meta{display:flex;border-left:2px solid #333;border-right:2px solid #333;border-bottom:2px solid #333}
 .exam-meta>div{padding:8px 12px;font-size:14px;font-weight:bold;border-right:1px solid #999}
 .exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}.exam-meta .remain{flex:2;text-align:center}
@@ -180,8 +185,14 @@ body{background:#fff}
     </div>
     <div class="finish-col"><button class="finish-btn" onclick="finishExam()">Finish Exam</button><div style="flex:1"></div></div>
   </div>
-  <!-- HEI HI A CHUNG AH DAH TAWH -->
-  <div id="waitBar">Please wait <span id="waitTime">30</span> seconds...</div>
+  <!-- TOTAL TIME CHUNG CHIAH - HEI HI -->
+  <div id="waitBar" class="wait-top">
+    <div class="qn"></div>
+    <div></div>
+    <div class="wait-text">Wait <span id="waitTime">30</span>s...</div>
+    <div class="remain"></div>
+    <div class="mark"></div>
+  </div>
   <div class="exam-meta">
     <div class="qn">QN: <span id="qnNo">1</span></div>
     <div>Total Marks: 100</div>
@@ -289,14 +300,14 @@ function startQuestionLock(){
   if(submitted[current]){ btn.disabled=false; bar.style.display='none'; return; }
   lockLeft=30;
   btn.disabled=true;
-  bar.style.display='block';
+  bar.style.display='flex';
   wt.innerText="30";
   lockTimer=setInterval(()=>{
     lockLeft--;
     if(lockLeft<=0){
       clearInterval(lockTimer);
       btn.disabled=false;
-      bar.style.display='none'; // READY TIAH LO, A BO DAIH
+      bar.style.display='none';
     } else {
       wt.innerText=lockLeft;
     }
