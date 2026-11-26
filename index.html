@@ -87,8 +87,11 @@ body{background:#fff}
 .review-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;width:100%;font-size:13px;cursor:pointer;margin-top:5px}
 .exam-footer{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;border-top:1px solid #999;background:#fff;position:sticky;bottom:0}
 .exam-footer .opts{display:flex;gap:28px}
-.exam-footer label{font-size:16px;font-weight:bold;cursor:pointer}
-.exam-footer label input{width:20px;height:20px;vertical-align:middle;margin-right:8px;accent-color:#333}
+/* A B C D + CIRCLE BLUE TAK TAK */
+.exam-footer label{font-size:18px;font-weight:bold;cursor:pointer;color:#2a6fd4;display:flex;align-items:center}
+.exam-footer label input{appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;border:2.5px solid #2a6fd4;background:#fff;vertical-align:middle;margin-right:8px;cursor:pointer;position:relative;flex-shrink:0}
+.exam-footer label input:checked{background:#fff}
+.exam-footer label input:checked::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;background:#2a6fd4}
 .footer-btns{display:flex;gap:12px;align-items:center}
 .pill-btn{border:2px solid #333;background:#fff;padding:8px 16px;border-radius:20px;font-weight:bold;cursor:pointer;font-size:13px;box-shadow:0 2px 5px rgba(0,0,0,.2)}
 .pill-btn.submit{color:#2e7d32}.pill-btn.reset{color:#e60000}
@@ -250,8 +253,6 @@ function goToExam(){
   document.getElementById('exam').style.display='block';
   startTimer(); renderExam();
 }
-
-/* EXAM - Q1-Q15 DAK LUH TAWH, Q16-Q50 LA DAH TUR */
 let fontSize=15;
 function changeFont(d){fontSize=Math.max(12,Math.min(22,fontSize+d)); document.getElementById('examLeft').style.fontSize=fontSize+"px";}
 let questions=[
@@ -271,9 +272,7 @@ let questions=[
 {q:"Which contain 'Mail Merge'?", o:["Microsoft Word","Microsoft Excel","Microsoft Powerpoint","Microsoft Access"], a:0},
 {q:"What is the full form of PDF?", o:["Personal Document Format","Personal Document File","Portable Document Format","Portable Document File"], a:2},
 ];
-// Q16-Q50 - LA DAH TUR, TUNAH PLACEHOLDER
 for(let i=16;i<=50;i++){ questions.push({q:"Question "+i+" - La dah tur (Q"+i+")", o:["Option A","Option B","Option C","Option D"], a:0}); }
-
 let current=0, answers=new Array(50).fill(null), submitted=new Array(50).fill(false);
 let timeLeft=60*60-11, timerStarted=false;
 function renderExam(){
