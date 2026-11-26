@@ -24,14 +24,13 @@ body{background:#fff}
 .proceed-wrap{max-width:900px;margin:0 auto;padding:15px 20px}
 .proceed-btn{background:linear-gradient(135deg,#5ec8e8,#0b6fa8);color:#fff;border:none;padding:13px 28px;border-radius:25px;font-size:19px;font-weight:bold;cursor:pointer;box-shadow:0 5px 15px rgba(11,111,168,.4)}
 
-/* ===== SCREEN 2 - INSTRUCTIONS - TAK ANG ===== */
+/* ===== SCREEN 2 - INSTRUCTIONS ===== */
 #instructions{display:none;max-width:1000px;margin:0 auto;padding:10px 15px 30px}
 .inst-head{text-align:center;padding:15px 0}
-.inst-head h2{font-size:22px;color:#000}
-.inst-head p{font-size:15px;color:#333;margin-top:4px}
+.inst-head h2{font-size:22px}
 .two-col{display:flex;gap:20px}
 .two-col>div{flex:1;font-size:14px;line-height:1.6;text-align:justify}
-.two-col h3{font-size:15px;margin:12px 0 5px;color:#000}
+.two-col h3{font-size:15px;margin:12px 0 5px}
 .two-col .red-text{color:#d94f30;font-weight:bold}
 @media(max-width:700px){.two-col{flex-direction:column}}
 .bottom-box{margin-top:20px;text-align:center}
@@ -45,7 +44,45 @@ body{background:#fff}
 .start-btn:disabled{background:#999;cursor:not-allowed}
 .ganga{text-align:center;color:#d94f30;font-weight:bold;margin-top:18px}
 
-/* ===== SCREEN 3 - EXAM ===== */
+/* ===== SCREEN 3 - CANDIDATE LOGIN - TAK ANG ===== */
+#candidateLogin{display:none;min-height:100vh;background:#fff}
+.login-top{
+  background:linear-gradient(to bottom,#5ab0e0,#a8d8f0,#d8f0ff);
+  padding:8px 0 12px;text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+.login-top h2{
+  font-family:"Times New Roman",serif;
+  font-size:42px;font-weight:bold;color:#000;
+  text-shadow:1px 1px 0 #fff;
+}
+@media(max-width:600px){.login-top h2{font-size:32px}}
+.login-form{max-width:700px;margin:40px auto;padding:0 20px}
+.login-row{display:flex;align-items:center;margin:18px 0;gap:15px;flex-wrap:wrap}
+.login-row .lbl{
+  width:180px;
+  font-family:"Times New Roman",serif;
+  font-size:24px;font-weight:bold;color:#00008B;
+}
+.login-row .val{
+  font-family:"Times New Roman",serif;
+  font-size:22px;font-weight:bold;color:#b94a2e;
+}
+.login-row input{
+  border:none;border-bottom:2px solid #555;
+  padding:8px 4px;font-size:18px;width:280px;outline:none;background:transparent;
+}
+.login-row input::placeholder{color:#555;font-size:17px}
+.login-btn-wrap{margin-top:45px;padding-left:95px}
+.login-btn{
+  background:linear-gradient(135deg,#2ea5e0,#0b6fa8);
+  color:#fff;border:none;padding:10px 22px;
+  border-radius:18px;font-size:17px;font-weight:bold;cursor:pointer;
+  box-shadow:0 4px 10px rgba(11,111,168,.4);
+}
+.login-btn:active{transform:scale(.96)}
+
+/* ===== SCREEN 4 - EXAM ===== */
 #exam{display:none}
 .top{background:#0b3d91;color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
 #timer{font-size:22px;font-weight:bold;background:#ffcc00;color:#000;padding:5px 12px;border-radius:5px}
@@ -83,19 +120,14 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
 
 <!-- SCREEN 2 - INSTRUCTIONS -->
 <div id="instructions">
-  <div class="inst-head">
-    <h2>General Instructions / सामान्य निर्देश</h2>
-    <p>Please read the instructions carefully before starting the examination</p>
-  </div>
-
+  <div class="inst-head"><h2>General Instructions / सामान्य निर्देश</h2><p>Please read the instructions carefully before starting the examination</p></div>
   <div class="two-col">
     <div>
       <h3>9) उत्तर चुनना / Answering:</h3>
       <p>a) किसी प्रश्न का उत्तर देने के लिए, विकल्प बटन पर क्लिक करें।</p>
       <p>b) अपने चुने हुए उत्तर को बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें।</p>
       <p>c) अपना चुने हुए उत्तर को अचयनित या रीसेट करने के लिए, <b>"Reset Answer"</b> बटन पर क्लिक करें।</p>
-      <p>d) अपना चयनित उत्तर बदलने के लिए, दूसरे विकल्प बटन पर क्लिक करें और अपना उत्तर सहेजें।</p>
-      <p class="red-text">सावधानी: ध्यान दें कि वर्तमान प्रश्न के लिए आपका उत्तर सहेजा नहीं जाएगा, यदि आप किसी अन्य प्रश्न पर सीधे (उत्तर की पुष्टि किए बिना) उसकी प्रश्न संख्या पर क्लिक करके नेविगेट करते हैं।</p>
+      <p class="red-text">सावधानी: ध्यान दें कि वर्तमान प्रश्न के लिए आपका उत्तर सहेजा नहीं जाएगा, यदि आप किसी अन्य प्रश्न पर सीधे उसकी प्रश्न संख्या पर क्लिक करके नेविगेट करते हैं।</p>
       <h3>10) परीक्षा समाप्त / सब्मिट करें:</h3>
       <p>a) परीक्षा खत्म करने के लिए पहले <b>"Finish Exam"</b> बटन पर क्लिक करें और फिर <b>"Confirm"</b> बटन पर क्लिक करें।</p>
       <p>b) घड़ी सर्वर पर सेट हो जाएगी। स्क्रीन के ऊपर दाईं ओर काउंटडाउन टाइमर उपलब्ध शेष समय को प्रदर्शित करेगा।</p>
@@ -108,60 +140,74 @@ button{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-size:
       <p>a) To answer a question, click on the option button.</p>
       <p>b) To change your chosen answer, click on the button of another option.</p>
       <p>c) To deselect or reset your chosen answer, click on the <b>"Reset Answer"</b> button.</p>
-      <p>d) To change your chosen answer, click on the button of another option and submit your answer.</p>
-      <p class="red-text">Caution: Note that your answer for the current question will not be saved, if you navigate to another question directly (without submitting the answer) by clicking on its question number.</p>
+      <p class="red-text">Caution: Note that your answer for the current question will not be saved, if you navigate to another question directly by clicking on its question number.</p>
       <h3>10) Finish/Submit the examination:</h3>
-      <p>a) To finish the exam, first click on the <b>"Finish Exam"</b> button and then <b>"Confirm"</b> button. This is mandatory process to finish the exam. Never try to finish the exam by clicking <b>"Close Exam Panel"</b> button.</p>
-      <p>b) The clock will be set at the server. The countdown timer on the screen will display the remaining time available. When the timer reaches zero, the examination will end by itself. In this case, you will not be required to end or submit your examination.</p>
+      <p>a) To finish the exam, first click on the <b>"Finish Exam"</b> button and then <b>"Confirm"</b> button.</p>
+      <p>b) The clock will be set at the server. The countdown timer will display the remaining time.</p>
       <h3>11) Candidate must ensure that s/he appends her/his signature on the attendance sheet at the examination centre in the same manner as signed by them while forwarding the copy of application form to NIELIT.</h3>
       <h3>12) If there is any inconsistency between the Hindi and English versions of questions, the English version of question & answer will prevail.</h3>
       <h3>13) In case of any system failure/technical error while running/finishing the exam, please inform the ES immediately.</h3>
     </div>
   </div>
-
   <div class="bottom-box">
     <div class="sys-no">System Number : nielit1-002</div>
-    <div class="roll-row">
-      <span>RollNo/ Login Id:</span>
-      <input type="text" id="rollNo" placeholder="HQ29" value="">
-    </div>
-    <div class="check-row">
-      <label><input type="checkbox" id="agreeBox" onchange="checkAgree()"> I have read and understood all the instructions thoroughly and I shall abide by the instructions.</label>
-    </div>
-    <div class="start-wrap">
-      <button class="start-btn" id="startBtn" disabled onclick="startExam()">परीक्षा प्रारम्भ करें / Start the exam</button>
-    </div>
+    <div class="roll-row"><span>RollNo/ Login Id:</span><input type="text" id="rollNo" placeholder="HQ29"></div>
+    <div class="check-row"><label><input type="checkbox" id="agreeBox" onchange="checkAgree()"> I have read and understood all the instructions thoroughly and I shall abide by the instructions.</label></div>
+    <div class="start-wrap"><button class="start-btn" id="startBtn" disabled onclick="goCandidateLogin()">परीक्षा प्रारम्भ करें / Start the exam</button></div>
     <div class="ganga">Ganga</div>
   </div>
 </div>
 
-<!-- SCREEN 3 - EXAM -->
+<!-- SCREEN 3 - CANDIDATE LOGIN -->
+<div id="candidateLogin">
+  <div class="login-top"><h2>Candidate Login</h2></div>
+  <div class="login-form">
+    <div class="login-row"><span class="lbl">Centre Code:</span><span class="val" id="dispCentre">NIELIT198</span></div>
+    <div class="login-row"><span class="lbl">Login Id:</span><span class="val" id="dispLoginId">hq1224228644</span></div>
+    <div class="login-row"><span class="lbl">Password:</span><input type="password" id="passwordInput" placeholder="Please Enter Password !"></div>
+    <div class="login-btn-wrap"><button class="login-btn" onclick="doLogin()">Login</button></div>
+    <p style="margin-top:25px;font-size:13px;color:#666;text-align:center">Practice Mode - Password engpawh dah la a lut ang. Eg: 1234</p>
+  </div>
+</div>
+
+<!-- SCREEN 4 - EXAM -->
 <div id="exam">
   <div class="top"><div><b>NIELIT CCC</b><br><small id="showName">Candidate</small></div><div id="timer">90:00</div></div>
   <div id="quizBox">
     <div class="card"><div id="qtext" style="font-size:18px;font-weight:bold"></div><div id="opts"></div>
-    <div style="display:flex;justify-content:space-between;margin-top:15px"><button class="prev" onclick="prevQ()">← Prev</button><button class="next" onclick="nextQ()">Next →</button><button style="background:#ff9800;color:#fff" onclick="resetAns()">Reset Answer</button></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:15px;flex-wrap:wrap;gap:8px"><button class="prev" onclick="prevQ()">← Prev</button><button class="next" onclick="nextQ()">Next →</button><button style="background:#ff9800;color:#fff" onclick="resetAns()">Reset Answer</button></div></div>
     <div class="card"><b>Question Palette:</b><div class="qnav" id="qnav"></div><button class="submit" onclick="submitExam()">FINISH EXAM</button></div>
   </div>
   <div id="result" class="card"><h2 id="scoreText"></h2><p id="passText"></p><p id="detail"></p><button class="next" onclick="location.reload()">TRY AGAIN</button></div>
 </div>
 
 <script>
+let savedRoll="";
 function goInstructions(){
   document.getElementById('landing').style.display='none';
   document.getElementById('instructions').style.display='block';
   window.scrollTo(0,0);
 }
 function checkAgree(){
-  let c=document.getElementById('agreeBox').checked;
-  document.getElementById('startBtn').disabled=!c;
+  document.getElementById('startBtn').disabled=!document.getElementById('agreeBox').checked;
 }
-function startExam(){
+function goCandidateLogin(){
   let roll=document.getElementById('rollNo').value.trim();
   if(!roll){ alert("RollNo / Login Id dah phawt rawh!"); return; }
   if(!document.getElementById('agreeBox').checked){ alert("Checkbox tick phawt rawh!"); return; }
-  document.getElementById('showName').innerText="Roll No: "+roll;
+  savedRoll=roll;
+  // Login Id ah Roll No i chhut kha a lo lang ang
+  document.getElementById('dispLoginId').innerText=roll;
   document.getElementById('instructions').style.display='none';
+  document.getElementById('candidateLogin').style.display='block';
+  window.scrollTo(0,0);
+  document.getElementById('passwordInput').focus();
+}
+function doLogin(){
+  let pw=document.getElementById('passwordInput').value.trim();
+  if(!pw){ alert("Please Enter Password !"); return; }
+  document.getElementById('showName').innerText="Login Id: "+savedRoll;
+  document.getElementById('candidateLogin').style.display='none';
   document.getElementById('exam').style.display='block';
   startTimer();
 }
