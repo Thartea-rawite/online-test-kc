@@ -65,11 +65,12 @@ body{background:#fff}
 .exam-info span{font-weight:bold}
 .finish-col{width:190px;display:flex;flex-direction:column}
 .finish-btn{background:#2a6fd4;color:#fff;font-weight:bold;padding:10px;border:none;font-size:14px;cursor:pointer;border-bottom:1px solid #333}
+/* TOTAL TIME CHUNG AH - 30 SECONDS A SEN IN */
+#waitBar{display:none;text-align:center;background:#fff0f0;border-left:2px solid #333;border-right:2px solid #333;padding:6px 0;font-size:17px;font-weight:900;color:#e60000}
+#waitBar span{font-size:20px}
 .exam-meta{display:flex;border-left:2px solid #333;border-right:2px solid #333;border-bottom:2px solid #333}
 .exam-meta>div{padding:8px 12px;font-size:14px;font-weight:bold;border-right:1px solid #999}
 .exam-meta .qn{width:110px}.exam-meta .mark{flex:1;text-align:right}.exam-meta .remain{flex:2;text-align:center}
-/* 30 SECONDS - CHUNG LAMAH A SEN IN */
-.q-time-top{color:#e60000;font-size:16px;font-weight:900}
 .exam-body{display:flex;min-height:calc(100vh - 140px)}
 .exam-left{flex:1;padding:18px 22px;font-size:15px;line-height:1.7;overflow-y:auto}
 .exam-left p{margin-bottom:12px;text-align:justify}
@@ -179,12 +180,13 @@ body{background:#fff}
     </div>
     <div class="finish-col"><button class="finish-btn" onclick="finishExam()">Finish Exam</button><div style="flex:1"></div></div>
   </div>
+  <!-- HEI HI A CHUNG AH DAH TAWH -->
+  <div id="waitBar">Please wait <span id="waitTime">30</span> seconds...</div>
   <div class="exam-meta">
     <div class="qn">QN: <span id="qnNo">1</span></div>
     <div>Total Marks: 100</div>
     <div>Total Time: 60 minutes</div>
     <div class="remain">Remaining Time: <span id="remainTime">0 : 59 : 49</span></div>
-    <div>Wait: <span class="q-time-top" id="qTimerTop">30s</span></div>
     <div class="mark">Mark: <span id="markVal">1</span></div>
   </div>
   <div class="exam-body">
@@ -282,19 +284,21 @@ let lockTimer=null, lockLeft=30;
 function startQuestionLock(){
   clearInterval(lockTimer);
   let btn=document.getElementById('submitBtn');
-  let topEl=document.getElementById('qTimerTop');
-  if(submitted[current]){ btn.disabled=false; btn.innerText="Submit Answer"; topEl.innerText="0s"; topEl.style.color="#2e7d32"; return; }
+  let bar=document.getElementById('waitBar');
+  let wt=document.getElementById('waitTime');
+  if(submitted[current]){ btn.disabled=false; bar.style.display='none'; return; }
   lockLeft=30;
-  btn.disabled=true; btn.innerText="Submit Answer";
-  topEl.innerText="30s"; topEl.style.color="#e60000";
+  btn.disabled=true;
+  bar.style.display='block';
+  wt.innerText="30";
   lockTimer=setInterval(()=>{
     lockLeft--;
     if(lockLeft<=0){
       clearInterval(lockTimer);
       btn.disabled=false;
-      topEl.innerText="Ready!"; topEl.style.color="#2e7d32";
+      bar.style.display='none'; // READY TIAH LO, A BO DAIH
     } else {
-      topEl.innerText=lockLeft+"s";
+      wt.innerText=lockLeft;
     }
   },1000);
 }
@@ -321,6 +325,7 @@ function submitAnswer(){
   if(answers[current]==null){alert("Option pakhat thlang phawt rawh!");return;}
   submitted[current]=true;
   clearInterval(lockTimer);
+  document.getElementById('waitBar').style.display='none';
   if(current<49){current++; renderExam();} else{renderExam(); alert("Answer Submitted!");}
 }
 function resetAnswer(){answers[current]=null; submitted[current]=false; renderExam();}
@@ -330,6 +335,7 @@ function finishExam(){
   let correct=0; submitted.forEach((s,i)=>{ if(s && answers[i]==questions[i].a) correct++; });
   document.querySelector('.exam-body').style.display='none';
   document.querySelector('.exam-footer').style.display='none';
+  document.getElementById('waitBar').style.display='none';
   document.getElementById('result').style.display='block';
   document.getElementById('scoreText').innerText=`Your Score: ${correct} / 50`;
   document.getElementById('passText').innerText=correct>=25?"✅ PASS":"❌ FAIL";
